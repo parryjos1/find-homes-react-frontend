@@ -3,8 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "google-map-react": "^1.1.4",
+    "google-maps-react": "^2.0.2",
+    "leaflet": "^1.5.1",
+    "leaflet-freedraw": "^2.12.0",
+    "ramda": "^0.26.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-leaflet": "^2.4.0",
+    "react-leaflet-freedraw": "^0.1.2",
     "react-scripts": "3.0.1"
   },
   "scripts": {
