@@ -12,6 +12,7 @@
     "react-dom": "^16.8.6",
     "react-leaflet": "^2.4.0",
     "react-leaflet-freedraw": "^0.1.2",
+    "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1"
   },
   "scripts": {
