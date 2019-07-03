@@ -276,11 +276,10 @@ export default class MapContainer extends Component {
 
 
     return (
-      <div style={{ height: '100vh', width: '100%' }}>
-        <p>Hello world</p>
+      <div style={{ height: '100vh', width: '90%' }}>
 
         <button onClick={this.freeDraw}>Draw area</button>
-        <SearchSelectedArea polygonArea={this.state.searchAreaPath}/>
+        
 
        <GoogleMapReact
          bootstrapURLKeys={{ key: API_KEY }}

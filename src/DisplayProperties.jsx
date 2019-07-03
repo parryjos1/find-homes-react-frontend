@@ -2,11 +2,15 @@ import React, {Component} from 'react'
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
+
 class DisplayProperties extends Component {
 
   constructor() {
     super();
-    this.state = { showComponent: false}
+    this.state = {
+      showComponent: false,
+      propertyResults: '',
+    }
   }
 
   componentDidMount() {
@@ -14,8 +18,13 @@ class DisplayProperties extends Component {
     console.log(`the polygon token is: this: ${this.props.polygonDrawn}`);
     console.log(`the domain token is: this: ${this.props.domainToken['data']}`);
 
+    // Access the domain token that was loaded in the MapContainer Component
+    // and passed down from MapComponent State as domainToken
     const accessToken = this.props.domainToken['data']
-    this.searchListings(accessToken)
+
+    // Run function that queries Domain API for properties
+    this.searchListings(accessToken);
+
 
   }
 
@@ -29,17 +38,7 @@ class DisplayProperties extends Component {
         "polygon": {
           "points":
             this.props.polygonDrawn
-            //Test data
-            // {lat: -33.861964921641594, lon: 151.20851723569467},
-            // {lat: -33.86207183000841, lon: 151.20469777005746},
-            // {lat: -33.86328344881071, lon: 151.19984833615854},
-            // {lat: -33.86677566563024, lon: 151.19989125150278},
-            // {lat: -33.869412551022236, lon: 151.20229451078012},
-            // {lat: -33.87048153541003, lon: 151.20881764310434},
-            // {lat: -33.868949320296856, lon: 151.2121221246107},
-            // {lat: -33.866419323519466, lon: 151.21473996060922},
-            // {lat: -33.8642812396206, lon: 151.21529786008432},
-            // {lat: -33.86192928548957, lon: 151.20825974362924}
+
         }
       },
 
@@ -51,6 +50,7 @@ class DisplayProperties extends Component {
     }).then(result => {
         const { data } = result;
         console.log('hello array:', data);
+        this.setState({propertyResults: data})
     }).catch(err => console.error(err.response.data))
   } // end of searchListing
 
@@ -61,7 +61,27 @@ class DisplayProperties extends Component {
     return(
 
       <div>
-        <h1>Hello there</h1>
+        {
+          this.state.propertyResults.length > 0
+          ?
+          <ul>
+            { this.state.propertyResults.map(p =>
+              <div>
+              <li key={p.listing.id}>
+                {p.listing.propertyDetails.displayableAddress}
+                <br />
+                {p.listing.id}
+                <br />
+                <img src={p.listing.media[0].url} height="300" width="400"></img>
+                <br />
+              </li>
+              <br></br>
+              </div>
+            )}
+          </ul>
+         :
+         <p>propertyResults is still empty</p>
+        }
       </div>
 
     )
