@@ -1,5 +1,5 @@
 import React, {Component } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import axios from 'axios'
 
 let email = '';
@@ -10,7 +10,6 @@ class LogIn extends Component {
   constructor(){
     super();
     this.state ={
-      userToken: '',
       errorMessage: ''
     }
   } // end of constructor
@@ -18,14 +17,12 @@ class LogIn extends Component {
   handleInputEmail = (event) =>{
   event.persist();
   // console.log(event.target.value);
-  // this.setState({ email: event.target.value})
   email = event.target.value;
   }
 
   handleInputPassword = (event) =>{
   event.persist();
   // console.log(event.target.value);
-  // this.setState({ password: event.target.value });
   password = event.target.value;
   }
 
@@ -37,21 +34,26 @@ class LogIn extends Component {
   console.log(email);
   console.log(password);
 
-  //make a post request to the backend, if user exists and password is correct
+  //make a post request to the backend, if user exists and password is correct (this is managed by knock gem)
   //then send back JWT
-  // axios.post('http://localhost:3000/user_token', {"auth": {"email": this.state.email, "password": this.state.password}})
   axios.post('http://localhost:3000/user_token', {"auth": {"email": email, "password": password}})
   .then( res => {
 
     jwt = res.data.jwt;
-    console.log('jwt', jwt);
-    this.setState({ userToken: jwt });
+    console.log(jwt)
 
-    //How to do an error message
+    //store UserToken in localStorage
+    // which allows for stored data is saved across browser sessions.
+    //https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
+    localStorage.setItem('userToken', jwt);
+    //redirect to wishlist
+    this.props.history.push('/wishlist');
 
 
   })
-  .catch( console.warn )
+  .catch( err => {
+    this.setState({ errorMessage: 'Invalid email or password'})
+  } )
 
 } //end of handleSubmit
 
@@ -59,6 +61,9 @@ class LogIn extends Component {
     return(
       <div>
         <h1>Log in</h1>
+        <div style={{color: 'red'}}>
+          {this.state.errorMessage}
+        </div>
         <form onSubmit={ this.handleSubmit }>
           <input type="text" placeholder="Your email" onChange={ this.handleInputEmail }></input>
           <br/>
