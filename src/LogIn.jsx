@@ -45,6 +45,7 @@ class LogIn extends Component {
     //store UserToken in localStorage
     // which allows for stored data is saved across browser sessions.
     //https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
+    //In console: localStorage.getItem('userToken')
     localStorage.setItem('userToken', jwt);
     //redirect to wishlist
     this.props.history.push('/wishlist');
