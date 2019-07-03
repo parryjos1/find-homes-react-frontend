@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios'
 
+const userToken = localStorage.getItem('userToken');
+console.log('localStorage in WishList Component', userToken);
+const authStr =  "Bearer " + userToken;
+console.log(authStr);
+
 class WishList extends Component {
   constructor(){
     super();
@@ -18,11 +23,8 @@ class WishList extends Component {
 
   getWishList = () => {
     //userToken is stored in localStorage
-    const userToken = localStorage.getItem('userToken');
-    console.log('localStorage in WishList Component', userToken);
-    const authStr =  "Bearer " + userToken;
-    console.log(authStr);
-    axios.get('http://localhost:3000/my_wishlist', { headers: {Authorization: authStr }})
+
+    axios.get('http://localhost:3000/wishlists', { headers: {Authorization: authStr }})
     .then( res =>{
       console.log(res.data.listings);
       console.log(res.data.name);
@@ -35,6 +37,18 @@ class WishList extends Component {
     })
     .catch( err => {
       console.log(err);
+    })
+  }
+
+  deleteListing = (id) => {
+    console.log('delete listing id', id);
+
+    axios.delete(`http://localhost:3000/wishlists/${id}`, { headers: {Authorization: authStr }})
+    // { data: { listingId: id }}
+    .then( res =>{
+      console.log(res);
+    }).catch( err => {
+        console.log(err);
     })
   }
 
@@ -54,6 +68,8 @@ class WishList extends Component {
                   <p>{listing.address}</p>
                 </div><div className="listings-right">
                   <img src={listing.image}/>
+                  <button onClick={ ()=>this.deleteListing(listing.id) }> Delete
+                  </button>
                 </div>
               </div>
             ))
