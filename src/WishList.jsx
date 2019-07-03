@@ -3,6 +3,13 @@ import { Link } from 'react-router-dom';
 import axios from 'axios'
 
 class WishList extends Component {
+  constructor(){
+    super();
+    this.state = {
+      listings: [],
+    }
+  }
+
 
   componentDidMount(){
     const userToken = localStorage.getItem('userToken');
@@ -11,7 +18,14 @@ class WishList extends Component {
     console.log(authStr);
     axios.get('http://localhost:3000/my_wishlist', { headers: {Authorization: authStr }})
     .then( res =>{
-      console.log(res);
+      console.log(res.data.listings);
+      console.log(res.data.name);
+
+      this.setState({
+        listings: res.data.listings,
+        name: res.data.name
+      })
+
     })
     .catch( err => {
       console.log(err);
@@ -22,7 +36,23 @@ class WishList extends Component {
   render(){
     return(
       <div>
-        <h2>Your property wishlist</h2>
+        <h2>Welcome, {this.state.name} </h2>
+        <div>
+        {
+          this.state.listings.length > 0
+          ?
+          this.state.listings.map( listing => (
+              <div key={listing.id} className="listings">
+                <p>{listing.headline}</p>
+                <p>{listing.address}</p>
+              </div>
+            ))
+
+          :
+          <p>loading</p>
+
+        }
+      </div>
       </div>
     )
 
