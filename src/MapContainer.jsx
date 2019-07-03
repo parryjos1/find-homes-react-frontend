@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
-// import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
-
-// import { Map, TileLayer } from 'react-leaflet';
-// import Freedraw, { ALL } from 'react-leaflet-freedraw';
+import axios from 'axios';
 
 import GoogleMapReact from 'google-map-react';
+import SearchSelectedArea from './SearchSelectedArea'
+import DisplayProperties from './DisplayProperties'
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
@@ -136,8 +135,6 @@ function GDouglasPeucker (source, kink)
 const mapStyles = {
   width: '50%',
   height: '50%',
-
-
 };
 
 export default class MapContainer extends Component {
@@ -148,7 +145,14 @@ export default class MapContainer extends Component {
     this.state = {
       map: null,
       maps: null,
-      searchAreaPath: []
+        searchAreaPath: [],
+      domain_token: '',
+      questions: [
+       { id: 'fdsd', title: 'Why is the sky blue?' },
+       { id: 'adsf', title: 'Who invented pizza?' },
+       { id: 'afdsf', title: 'Is green tea overrated?' },
+      ],
+      displayQuestions: false
     };
 
   }
@@ -161,6 +165,24 @@ export default class MapContainer extends Component {
     zoom: 15
   };
 
+  componentDidMount() {
+
+    this.getDomainToken();
+
+  }
+
+
+  getDomainToken = () => {
+     const railsDomainTokenRequest = axios.get("http://localhost:3000/domain_token").then(result => {
+       console.log(`The result is: ${result}`);
+       this.setState({domain_token: result.data})
+     })
+
+     console.log(`railsDomainTokenRequest is: ${railsDomainTokenRequest}`);
+
+     return railsDomainTokenRequest
+  }
+
   handleApiLoaded = ({map, maps}) => {
     console.log('LOADED', map, maps);
     // debugger;
@@ -169,8 +191,6 @@ export default class MapContainer extends Component {
       maps: maps
     });
   }
-
-
 
   freeDrawMouseDown = () => {
 
@@ -254,81 +274,36 @@ export default class MapContainer extends Component {
 
   render(){
 
+
     return (
       <div style={{ height: '100vh', width: '100%' }}>
-      <p>Hello world</p>
+        <p>Hello world</p>
 
-      <button onClick={this.freeDraw}>Draw area</button>
+        <button onClick={this.freeDraw}>Draw area</button>
+        <SearchSelectedArea polygonArea={this.state.searchAreaPath}/>
 
-             <GoogleMapReact
-               bootstrapURLKeys={{ key: API_KEY }}
-               defaultCenter={this.props.center}
-               defaultZoom={this.props.zoom}
-                onGoogleApiLoaded={this.handleApiLoaded}
-             >
-             <AnyReactComponent
-               lat={59.955413}
-               lng={30.337844}
-               text="My Marker"
-             />
-             </GoogleMapReact>
-           </div>
+       <GoogleMapReact
+         bootstrapURLKeys={{ key: API_KEY }}
+         defaultCenter={this.props.center}
+         defaultZoom={this.props.zoom}
+          onGoogleApiLoaded={this.handleApiLoaded}
+       >
+       <AnyReactComponent
+         lat={59.955413}
+         lng={30.337844}
+         text="My Marker"
+       />
+       </GoogleMapReact>
+       {
+         this.state.searchAreaPath.length > 0
+         ?
+        <DisplayProperties polygonDrawn={this.state.searchAreaPath} domainToken={this.state.domain_token}/>
+        :
+        <p>Select an area on the map to search</p>
+       }
+      </div>
     );
   }
 
-  // render(){
-  //   return (
-  //     <Map
-  //       className="map"
-  //       center={[20.5937, 78.9629]}
-  //       zoom={5}
-  //       doubleClickZoom={false}
-  //       style={mapStyles}
-  //     >
-  //
-  //     <TileLayer
-  //          attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors &copy; <a href=&quot;https://carto.com/attribution/&quot;>CARTO</a>"
-  //          url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"
-  //        />
-  //
-  //         <Freedraw
-  //           mode={ALL}
-  //           onMarkers={this.handleOnMarkers}
-  //           onModeChange={this.handleModeChange}
-  //           ref={this.freedrawRef}
-  //         />
-  //       </Map>
-  //   );
-  // }
 
-
-
-  // render() {
-  //   return (
-  //
-  //     <div className="gmap">
-  //       <Map google={this.props.google} zoom={14} style={mapStyles} initialCenter={{lat: -33.8559799094, lng: 151.20666584}}>
-  //
-  //         <Marker onClick={this.onMarkerClick}
-  //                 name={'Current location'} />
-  //
-  //         <Freedraw
-  //           mode={ALL}
-  //           onMarkers={this.handleOnMarkers}
-  //           onModeChange={this.handleModeChange}
-  //           ref={this.freedrawRef}
-  //         />
-  //
-  //       </Map>
-  //
-  //
-  //
-  //
-  //     </div>
-  //   );
-  // }
-}
-
-// export default GoogleApiWrapper({
-//   apiKey: ('------------')
-// })(MapContainer)
+} // End of MapContainer
