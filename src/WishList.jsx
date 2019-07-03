@@ -12,6 +12,12 @@ class WishList extends Component {
 
 
   componentDidMount(){
+    this.getWishList();
+
+  } // end of ComponentDidMount
+
+  getWishList = () => {
+    //userToken is stored in localStorage
     const userToken = localStorage.getItem('userToken');
     console.log('localStorage in WishList Component', userToken);
     const authStr =  "Bearer " + userToken;
@@ -30,8 +36,8 @@ class WishList extends Component {
     .catch( err => {
       console.log(err);
     })
+  }
 
-  } // end of ComponentDidMount
 
   render(){
     return(
@@ -43,8 +49,12 @@ class WishList extends Component {
           ?
           this.state.listings.map( listing => (
               <div key={listing.id} className="listings">
-                <p>{listing.headline}</p>
-                <p>{listing.address}</p>
+                <div className="listings-left">
+                  <p><strong>{listing.headline}</strong></p>
+                  <p>{listing.address}</p>
+                </div><div className="listings-right">
+                  <img src={listing.image}/>
+                </div>
               </div>
             ))
 
