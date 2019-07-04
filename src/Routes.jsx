@@ -6,6 +6,10 @@ import LogIn from './LogIn';
 import WishList from './WishList'
 
 const Routes = (
+  <div>
+    <nav>
+      test nav
+    </nav>
   <Router>
     <div>
       <Route exact path="/" component={ MapContainer } />
@@ -13,6 +17,7 @@ const Routes = (
       <Route exact path="/wishlist" component={ WishList } />
     </div>
   </Router>
+  </div>
 )
 
 export default Routes;
