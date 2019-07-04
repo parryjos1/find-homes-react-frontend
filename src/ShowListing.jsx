@@ -10,7 +10,8 @@ class ShowListing extends Component {
     this.state = {
       listing: {},
       listingImages: [],
-      price: ''
+      price: '',
+      address: ''
     }
   }
 
@@ -61,7 +62,8 @@ class ShowListing extends Component {
       this.setState({
         listing: result.data,
         listingImages: result.data.media,
-        price: result.data.priceDetails.displayPrice
+        price: result.data.priceDetails.displayPrice,
+        address: result.data.addressParts.displayAddress
       })
   }).catch(err => console.error(err))
   }
@@ -73,6 +75,7 @@ class ShowListing extends Component {
         <button onClick={()=>this.addListing(this.state.listing.id, this.state.listing.addressParts.displayAddress, this.state.listingImages[0].url, this.state.listing.headline, this.state.listing.geoLocation.latitude, this.state.listing.geoLocation.longitude )}>Add This house</button>
 
         <h2>{this.state.listing.headline}</h2>
+        <h3>{this.state.address}</h3>
         <p><strong>Bathrooms</strong>: {this.state.listing.bathrooms}</p>
         <p><strong>Bedrooms</strong>: {this.state.listing.bedrooms}</p>
         <p><strong>Car spaces</strong>: {this.state.listing.carspaces}</p>

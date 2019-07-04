@@ -5,6 +5,7 @@ import MapContainer from './MapContainer';
 import LogIn from './LogIn';
 import WishList from './WishList';
 import ShowListing from './ShowListing';
+import SearchedShowListings from './SearchedShowListings';
 import Nav from './Nav';
 
 // <Nav history={window.history}>
@@ -18,6 +19,7 @@ const Routes = (
       <Route exact path="/login" component={ LogIn } />
       <Route exact path="/wishlist" component={ WishList } />
       <Route exact path="/listing/:id" component={ ShowListing }/>
+      <Route exact path="/searchlistings" component={ SearchedShowListings }/>
     </div>
   </Router>
 )

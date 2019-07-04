@@ -38,6 +38,9 @@ class DisplayProperties extends Component {
   return axios.post(`https://api.domain.com.au/v1/listings/residential/_search`,
   {
       "listingType": "Sale",
+      "minBedrooms": this.props.bedrooms,
+      "minBathrooms": this.props.bathrooms,
+      "maxPrice": this.props.maxPrice,
       "geoWindow": {
 
         "polygon": {
