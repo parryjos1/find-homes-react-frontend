@@ -26,8 +26,8 @@ class WishList extends Component {
       }
     })
     .then( res =>{
-      console.log(res.data.listings);
-      console.log(res.data.name);
+      // console.log(res.data.listings);
+      // console.log(res.data.name);
 
       this.setState({
         listings: res.data.listings,
@@ -41,23 +41,31 @@ class WishList extends Component {
   }
 
   deleteListing = (id, index) => {
-    console.log('delete listing id', id);
-    console.log('index', index)
+    // console.log('delete listing id', id);
+    // console.log('index', index)
+
+    // delete listing from users wishList in the database
 
     axios.delete(`http://localhost:3000/wishlists/` + id, {
       headers: {
         Authorization: "Bearer " + localStorage.getItem('userToken')
       }
     })
-    // { data: { listingId: id }}
+
     .then( res =>{
       console.log(res);
-      // update this.state.listings, removing the item that was deleted
-      // so the rendered view no longer shows it
+      // update page
+
+      // make a copy of the users listings because you cannot change the state directly
       const newListings = [...this.state.listings];
       // console.log(newListings);
+
+      //remove deleted listing via splicing
       newListings.splice(index, 1);
       // console.log(newListings);
+
+      // update this.state.listings
+      // so the rendered view no longer shows it
       this.setState({
         listings: newListings
       })
@@ -76,18 +84,19 @@ class WishList extends Component {
           this.state.listings.length > 0
           ?
           this.state.listings.map( (listing, index) => (
-              <div key={listing.id} className="listings">
-                <div className="listings-left">
-                  <p><strong>{listing.headline}</strong></p>
-                  <p>{listing.address}</p>
-                </div><div className="listings-right">
-                  <img src={listing.image}/>
-                  <button onClick={ ()=>this.deleteListing(listing.id, index) }> Delete
-                  </button>
-                </div>
-              </div>
+              <Link to={`/listing/${listing.domain_id}`}>
+                  <div key={listing.id} className="listings">
+                    <div className="listings-left">
+                      <p><strong>{listing.headline}</strong></p>
+                      <p>{listing.address}</p>
+                    </div><div className="listings-right">
+                      <img src={listing.image}/>
+                      <button onClick={ ()=>this.deleteListing(listing.id, index) }> Delete
+                      </button>
+                    </div>
+                  </div>
+              </Link>
             ))
-
           :
           <p>loading</p>
 
