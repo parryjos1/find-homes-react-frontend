@@ -21,6 +21,26 @@ class ShowListing extends Component {
 
   }
 
+  // headline, image, address, latitude, longitude, domainId
+
+  // // onClick={()=>this.addListing(this.state.listing.id)}
+  //
+  //   addListing = (headline, , latitude, longitude, )
+
+  addListing = (domainId, address, image, headline, latitude, longitude) => {
+
+    axios.post('http://localhost:3000/wishlists/', {domainId: domainId, address: address, image: image, headline: headline, latitude: latitude, longitude: longitude}, {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem('userToken')
+      }
+    }).then( res =>{
+      console.log(res);
+    }).catch(err => {
+      console.log(err);
+    })
+
+  }; //end of addListing
+
   getDomainTokenAndFetchListing = (domainId) => {
      axios.get("http://localhost:3000/domain_token")
      .then(result => {
@@ -46,9 +66,12 @@ class ShowListing extends Component {
   }).catch(err => console.error(err))
   }
 
+
   render(){
     return(
       <div>
+        <button onClick={()=>this.addListing(this.state.listing.id, this.state.listing.addressParts.displayAddress, this.state.listingImages[0].url, this.state.listing.headline, this.state.listing.geoLocation.latitude, this.state.listing.geoLocation.longitude )}>Add This house</button>
+
         <h2>{this.state.listing.headline}</h2>
         <p><strong>Bathrooms</strong>: {this.state.listing.bathrooms}</p>
         <p><strong>Bedrooms</strong>: {this.state.listing.bedrooms}</p>
