@@ -46,7 +46,7 @@ code {
 }
 
 .listings-right img {
-  max-width: 200px;
+  max-height: 25vw;
 
   /* margin-left: 0; */
 }

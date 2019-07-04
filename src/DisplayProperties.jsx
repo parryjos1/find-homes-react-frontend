@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 
+
 class DisplayProperties extends Component {
 
   constructor() {
@@ -24,6 +25,10 @@ class DisplayProperties extends Component {
 
     // Run function that queries Domain API for properties
     this.searchListings(accessToken);
+
+
+    // console.log(`The this.propertyResultsis: ${this.propertyResults} `);
+    // this.props.selectedPropCallBack(this.propertyResults)
 
 
   }
@@ -51,6 +56,7 @@ class DisplayProperties extends Component {
         const { data } = result;
         console.log('hello array:', data);
         this.setState({propertyResults: data})
+        this.props.selectedPropCallBack(data)
     }).catch(err => console.error(err.response.data))
   } // end of searchListing
 
@@ -66,15 +72,16 @@ class DisplayProperties extends Component {
           ?
           <ul>
             { this.state.propertyResults.map(p =>
-              <div>
-              <li key={p.listing.id}>
+              <div className='listings'>
+              <div key={p.listing.id} className='listings-left'>
                 {p.listing.propertyDetails.displayableAddress}
                 <br />
                 {p.listing.id}
                 <br />
-                <img src={p.listing.media[0].url} height="300" width="400"></img>
+              </div><div className='listings-right'>
+                <img src={p.listing.media[0].url} ></img>
                 <br />
-              </li>
+                </div>
               <br></br>
               </div>
             )}

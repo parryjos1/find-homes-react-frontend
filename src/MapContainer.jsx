@@ -6,7 +6,12 @@ import GoogleMapReact from 'google-map-react';
 import SearchSelectedArea from './SearchSelectedArea'
 import DisplayProperties from './DisplayProperties'
 
+
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
+
+// const testMarkerArray = [{lat: -33.8659 , lng: 151.2117}, {lat: -33.8670 , lng: 151.2100}]
+const testMarkerArray = []
+
 
 const API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 console.log('API KEY', API_KEY, process.env);
@@ -20,6 +25,8 @@ console.log('API KEY', API_KEY, process.env);
    http://www.bdcc.co.uk/Gmaps/GDouglasPeuker.js
 */
 
+// Douglas–Peucker algorithm (https://en.wikipedia.org/wiki/Ramer%E2%80%93Douglas%E2%80%93Peucker_algorithm)
+// used to return an array of the polygon points based on lines drawn
 function GDouglasPeucker (source, kink)
 /* source[] Input coordinates in GLatLngs 	*/
 /* kink	in metres, kinks above this depth kept  */
@@ -145,18 +152,14 @@ export default class MapContainer extends Component {
     this.state = {
       map: null,
       maps: null,
-        searchAreaPath: [],
+      searchAreaPath: [],
       domain_token: '',
-      questions: [
-       { id: 'fdsd', title: 'Why is the sky blue?' },
-       { id: 'adsf', title: 'Who invented pizza?' },
-       { id: 'afdsf', title: 'Is green tea overrated?' },
-      ],
-      displayQuestions: false
+      selectedPropertyLocations: [],
     };
 
   }
 
+  // Sydney City Lat & Lng for default
   static defaultProps = {
     center: {
       lat: -33.8708,
@@ -167,22 +170,23 @@ export default class MapContainer extends Component {
 
   componentDidMount() {
 
+    // get's domain token from rails database
     this.getDomainToken();
 
   }
 
-
+  // gets domain token by making an axios request to the rails server which runs the logic to       generate a token
+  // the results of axios query is then saved to state
   getDomainToken = () => {
      const railsDomainTokenRequest = axios.get("http://localhost:3000/domain_token").then(result => {
        console.log(`The result is: ${result}`);
        this.setState({domain_token: result.data})
      })
-
      console.log(`railsDomainTokenRequest is: ${railsDomainTokenRequest}`);
-
      return railsDomainTokenRequest
   }
 
+  // ?*? what is this function do what is map and what is maps?
   handleApiLoaded = ({map, maps}) => {
     console.log('LOADED', map, maps);
     // debugger;
@@ -203,17 +207,18 @@ export default class MapContainer extends Component {
     });
 
 
-    const that = this;  // Screw you JS
+    const that = this;
 
     //mouseup-listener
     this.state.maps.event.addListenerOnce(this.state.map,'mouseup',function(e){
 
         that.state.maps.event.removeListener(move);
-        var path=poly.getPath();
+        var path=poly.getPath(); // what is this? and how does it know where the path has moved
         poly.setMap(null);
 
-
-        var theArrayofLatLng = path.j;
+        //?*?
+        // Gets the path of the mouse movements but why is that on the mouse up?
+        var theArrayofLatLng = path.j; // What is path.j? ?*?
         var arrayforPolygontoUse= GDouglasPeucker(theArrayofLatLng,50);
         console.log("ArrayforPolygontoUse", arrayforPolygontoUse);
 
@@ -257,7 +262,7 @@ export default class MapContainer extends Component {
   } //freeDrawMouseDown()
 
   freeDraw = (event) => {
-
+    // ?*? what is map.setOptions?
     this.state.map.setOptions({
         draggable: false,
         zoomControl: false,
@@ -270,6 +275,11 @@ export default class MapContainer extends Component {
 
   } //freeDraw()
 
+  selectedPropCallBack = (e) => {
+    console.log(`~~~~e is: ${e}`);
+    this.setState({selectedPropertyLocations: e})
+  }
+
 
 
   render(){
@@ -279,7 +289,7 @@ export default class MapContainer extends Component {
       <div style={{ height: '100vh', width: '90%' }}>
 
         <button onClick={this.freeDraw}>Draw area</button>
-        
+
 
        <GoogleMapReact
          bootstrapURLKeys={{ key: API_KEY }}
@@ -287,16 +297,36 @@ export default class MapContainer extends Component {
          defaultZoom={this.props.zoom}
           onGoogleApiLoaded={this.handleApiLoaded}
        >
+
+
+
+       {
+         this.state.selectedPropertyLocations.length > 0
+         ?
+          this.state.selectedPropertyLocations.map(p =>
+         <AnyReactComponent
+           lat={p.listing.propertyDetails.latitude}
+           lng={p.listing.propertyDetails.longitude}
+           text='X'
+         />
+       )
+       :
+       <p></p>
+     }
+
+       {/*
        <AnyReactComponent
-         lat={59.955413}
-         lng={30.337844}
+         lat={-33.8659}
+         lng={151.2117}
          text="My Marker"
        />
+       */}
+
        </GoogleMapReact>
        {
          this.state.searchAreaPath.length > 0
          ?
-        <DisplayProperties polygonDrawn={this.state.searchAreaPath} domainToken={this.state.domain_token}/>
+        <DisplayProperties polygonDrawn={this.state.searchAreaPath} domainToken={this.state.domain_token} selectedPropCallBack={this.selectedPropCallBack}/>
         :
         <p>Select an area on the map to search</p>
        }
@@ -306,3 +336,19 @@ export default class MapContainer extends Component {
 
 
 } // End of MapContainer
+
+
+// ``````~~~~~~ How MapContainer works  ~~~~~~~~~```````
+/*
+
+1. A Map is rendered on the Page from the Google Map Component
+    - GoogleMapReact is a google map library google-map-react (https://github.com/google-map-react/google-map-react)
+    - it allows you to render any google react component on the google map
+    - ?*? what does the handleApiLoaded function do?
+
+2. FreeDraw function allows you to draw on the Google map
+    -   FreeDraw() is called on the OnClick function of the button
+    -
+3.
+
+*/
