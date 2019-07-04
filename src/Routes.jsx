@@ -8,11 +8,11 @@ import ShowListing from './ShowListing';
 import Nav from './Nav';
 
 // <Nav history={window.history}>
+// path without exact allows the nav component to render on every page with
 
 const Routes = (
   <Router>
     <div>
-// path without exact allows the nav component to render on every page with 
       <Route path="/" component={ Nav } />
       <Route exact path="/" component={ MapContainer } />
       <Route exact path="/login" component={ LogIn } />

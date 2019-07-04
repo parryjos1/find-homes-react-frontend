@@ -4,17 +4,28 @@ import { Link } from 'react-router-dom';
 
 class Nav extends Component {
 
+  logOut = () => {
+    console.log('hello');
+    localStorage.removeItem('userToken');
+    this.props.history.push('/');
+  }
+
   render(){
     return(
       <div>
         <Link to="/">Find homes</Link>
         |
-        <Link to="/wishlist">Wishlist</Link>
-        |
+        {localStorage.getItem('userToken')
+        ?
+        <div>
+          <button onClick={this.logOut}>Log out</button>
+          <Link to="/wishlist">Wishlist</Link>
+        </div>
+        :
         <Link to="/login">Log in</Link>
-        |
-        <span>Log out</span>
-      </div>
+
+        }
+    </div>
     )
 
   }
