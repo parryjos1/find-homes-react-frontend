@@ -1,7 +1,34 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import { Link } from 'react-router-dom';
+// import axios from 'axios';
 
 class Nav extends Component {
+
+  logOut = () => {
+    console.log('hello');
+    localStorage.removeItem('userToken');
+    this.props.history.push('/');
+  }
+
+  render(){
+    return(
+      <div>
+        <Link to="/">Find homes</Link>
+        |
+        {localStorage.getItem('userToken')
+        ?
+        <div>
+          <button onClick={this.logOut}>Log out</button>
+          <Link to="/wishlist">Wishlist</Link>
+        </div>
+        :
+        <Link to="/login">Log in</Link>
+
+        }
+    </div>
+    )
+
+  }
 
 
 }
