@@ -22,8 +22,11 @@ class Nav extends Component {
           <Link to="/wishlist">Wishlist</Link>
         </div>
         :
-        <Link to="/login">Log in</Link>
-
+        <div>
+          <Link to="/login">Log in</Link>
+          |
+          <Link to="/create_account">Create Account</Link>
+        </div>
         }
     </div>
     )

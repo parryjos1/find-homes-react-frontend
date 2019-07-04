@@ -5,6 +5,7 @@ import MapContainer from './MapContainer';
 import LogIn from './LogIn';
 import WishList from './WishList';
 import ShowListing from './ShowListing';
+import CreateAccount from './CreateAccount';
 import Nav from './Nav';
 
 // <Nav history={window.history}>
@@ -16,6 +17,7 @@ const Routes = (
       <Route path="/" component={ Nav } />
       <Route exact path="/" component={ MapContainer } />
       <Route exact path="/login" component={ LogIn } />
+      <Route exact path="/create_account" component={ CreateAccount } />
       <Route exact path="/wishlist" component={ WishList } />
       <Route exact path="/listing/:id" component={ ShowListing }/>
     </div>
