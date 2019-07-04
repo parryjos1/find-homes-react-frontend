@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios'
 
 
+
 class WishList extends Component {
   constructor(){
     super();

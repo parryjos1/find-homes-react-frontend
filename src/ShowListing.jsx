@@ -3,7 +3,16 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 
+
 class ShowListing extends Component {
+  constructor(){
+    super();
+    this.state = {
+      listing: {},
+      listingImages: [],
+      price: ''
+    }
+  }
 
 
   componentDidMount(){
@@ -15,14 +24,11 @@ class ShowListing extends Component {
   getDomainTokenAndFetchListing = (domainId) => {
      axios.get("http://localhost:3000/domain_token")
      .then(result => {
-       console.log(`The result is: ${result}`);
-       this.getListingById( domainId, result);
+       console.log(`The domain token is:`, result.data.data);
+       const domainToken = result.data.data;
+       this.getListingById( domainId, domainToken );
        // this.setState({domain_token: result.data})
      })
-
-     // console.log(`railsDomainTokenRequest is: ${railsDomainTokenRequest}`);
-     //
-     // return railsDomainTokenRequest
   }
 
   getListingById = (listingId, accessToken) => {
@@ -31,16 +37,38 @@ class ShowListing extends Component {
           'Authorization': `Bearer ${accessToken}`,
       }
   }).then(result => {
-      const { data } = result;
-      console.log(data);
-  }).catch(err => console.error(err.response.data))
+      console.log(result.data);
+      this.setState({
+        listing: result.data,
+        listingImages: result.data.media,
+        price: result.data.priceDetails.displayPrice
+      })
+  }).catch(err => console.error(err))
   }
 
   render(){
     return(
       <div>
-        <h1>Hello from show listings</h1>
-        <p>{this.props.match.params.id}</p>
+        <h2>{this.state.listing.headline}</h2>
+        <p><strong>Bathrooms</strong>: {this.state.listing.bathrooms}</p>
+        <p><strong>Bedrooms</strong>: {this.state.listing.bedrooms}</p>
+        <p><strong>Car spaces</strong>: {this.state.listing.carspaces}</p>
+
+        <p><strong>Price</strong>: {this.state.price}</p>
+
+
+          {
+            this.state.listingImages.length > 0
+            ?
+            this.state.listingImages.map( (image, index) => (
+              <img className="show-images" key={index} src={image.url}/>
+            ))
+            :
+            <p>loading</p>
+          }
+        <p>{this.state.listing.description}</p>
+
+
       </div>
     )
   }

@@ -50,3 +50,8 @@ code {
 
   /* margin-left: 0; */
 }
+
+.show-images {
+  max-width: 300px;
+  padding: 1%;
+}
