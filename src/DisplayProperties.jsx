@@ -70,22 +70,19 @@ class DisplayProperties extends Component {
         {
           this.state.propertyResults.length > 0
           ?
-          <ul>
-            { this.state.propertyResults.map(p =>
+          this.state.propertyResults.map( p =>
+            <Link to={`/listing/${p.listing.id}`}>
               <div className='listings'>
-              <div key={p.listing.id} className='listings-left'>
-                {p.listing.propertyDetails.displayableAddress}
-                <br />
-                {p.listing.id}
-                <br />
-              </div><div className='listings-right'>
-                <img src={p.listing.media[0].url} ></img>
-                <br />
-                </div>
-              <br></br>
+                <div key={p.listing.id} className='listings-left'>
+                  {p.listing.propertyDetails.displayableAddress}
+                </div><div className='listings-right'>
+                  <img src={p.listing.media[0].url} ></img>
+                  </div>
+                <br></br>
               </div>
-            )}
-          </ul>
+            </Link>
+          )
+
          :
          <p>propertyResults is still empty</p>
         }
