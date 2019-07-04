@@ -307,7 +307,7 @@ export default class MapContainer extends Component {
          <AnyReactComponent
            lat={p.listing.propertyDetails.latitude}
            lng={p.listing.propertyDetails.longitude}
-           text='X'
+           text= <Link to={`/listing/${p.listing.id}`}><strong>X</strong></Link>
          />
        )
        :
