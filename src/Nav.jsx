@@ -1,11 +1,20 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import { Link } from 'react-router-dom';
+// import axios from 'axios';
 
 class Nav extends Component {
 
   render(){
     return(
-      <h1>Nav</h1>
+      <div>
+        <Link to="/">Find homes</Link>
+        |
+        <Link to="/wishlist">Wishlist</Link>
+        |
+        <Link to="/login">Log in</Link>
+        |
+        <span>Log out</span>
+      </div>
     )
 
   }
