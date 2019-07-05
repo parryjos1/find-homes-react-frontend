@@ -13,7 +13,7 @@ class Nav extends Component {
   render(){
     return(
       <div>
-        <h2>Find Homes</h2>
+        <h1 className="title">Find Homes</h1>
         <nav className='nav-bar'>
             <div className='nav-left'>
               <Link to="/">Find homes</Link>
@@ -21,8 +21,9 @@ class Nav extends Component {
             {localStorage.getItem('userToken')
             ?
               <div>
-                <button onClick={this.logOut}>Log out</button>
                 <Link to="/wishlist">Wishlist</Link>
+                |
+                <button onClick={this.logOut}>Log out</button>
               </div>
               :
               <div>
