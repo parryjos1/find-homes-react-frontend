@@ -49,7 +49,7 @@ class CreateAccount extends Component {
   createUser = () => {
     axios.post('http://localhost:3000/user', { name: this.state.name, email: this.state.email, password: this.state.password
     }).then( res => {
-      console.log(res);
+      console.log(res)
     }).catch( err => {
       console.log(err);
     })

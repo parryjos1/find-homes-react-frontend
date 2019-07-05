@@ -155,6 +155,10 @@ export default class MapContainer extends Component {
       searchAreaPath: [],
       domain_token: '',
       selectedPropertyLocations: [],
+      bedrooms: 0,
+      bathrooms: 0,
+      max_price: 100000000,
+      suburb: '',
     };
 
   }
@@ -167,6 +171,10 @@ export default class MapContainer extends Component {
     },
     zoom: 15
   };
+
+  handleChange(e) {
+     this.setState({ [e.target.name] : e.target.value });
+  }
 
   componentDidMount() {
 
@@ -280,6 +288,22 @@ export default class MapContainer extends Component {
     this.setState({selectedPropertyLocations: e})
   }
 
+  // Upon submitting suburb form route to SearchedShowListing Route and pass along these state. Can be found under: history > location > staten >
+  submitForm (e) {
+    e.preventDefault()
+
+    this.props.history.push({
+      pathname: '/searchlistings',
+      state: {
+        bedrooms: this.state.bedrooms,
+        bathrooms: this.state.bathrooms,
+        max_price: this.state.max_price,
+        suburb: this.state.suburb,
+        domainToken: this.state.domain_token.data
+      }
+    })
+  } //submitForm()
+
 
 
   render(){
@@ -288,7 +312,57 @@ export default class MapContainer extends Component {
     return (
       <div style={{ height: '100vh', width: '90%' }}>
 
+          <form onSubmit={this.submitForm.bind(this)} bedrooms={this.state.bedrooms}>
+            <label>
+
+              Search Suburb:
+              <input type="text" name="suburb" value={this.state.value} placeholder=" 'Glebe'" onChange={this.handleChange.bind(this)} />
+
+            </label>
+
+            <input type="submit" value="Search" />
+          </form>
+
+        <div>
+          <label>
+            Min Bedrooms:
+            <select value={this.state.bedrooms} name='bedrooms' onChange={this.handleChange.bind(this)}>
+              <option value='0'>0</option>
+              <option value='1'>1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+            </select>
+          </label>
+          <label>
+            Min Bathrooms:
+            <select value={this.state.bathrooms} name='bathrooms' onChange={this.handleChange.bind(this)}>
+              <option value='0'>0</option>
+              <option value='1'>1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+            </select>
+          </label>
+          <label>
+            Max Price:
+            <select value={this.state.max_price} name='max_price' onChange={this.handleChange.bind(this)}>
+              <option value="">-</option>
+              <option value="1000000">1,000,000</option>
+              <option value="2000000">2,000,000</option>
+              <option value="3000000">3,000,000</option>
+              <option value="5000000">5,000,000</option>
+            </select>
+          </label>
+
+
+
+        </div>
+
+
+
         <button onClick={this.freeDraw}>Draw area</button>
+
 
 
        <GoogleMapReact
@@ -314,19 +388,12 @@ export default class MapContainer extends Component {
        <p></p>
      }
 
-       {/*
-       <AnyReactComponent
-         lat={-33.8659}
-         lng={151.2117}
-         text="My Marker"
-       />
-       */}
 
        </GoogleMapReact>
        {
          this.state.searchAreaPath.length > 0
          ?
-        <DisplayProperties polygonDrawn={this.state.searchAreaPath} domainToken={this.state.domain_token} selectedPropCallBack={this.selectedPropCallBack}/>
+        <DisplayProperties polygonDrawn={this.state.searchAreaPath} domainToken={this.state.domain_token} selectedPropCallBack={this.selectedPropCallBack} bedrooms={this.state.bedrooms} bathrooms={this.state.bathrooms} maxPrice={this.state.max_price}/>
         :
         <p>Select an area on the map to search</p>
        }
@@ -351,6 +418,6 @@ export default class MapContainer extends Component {
     -
 3.
 
-Do something you're so good at 
+Do something you're so good at
 
 */

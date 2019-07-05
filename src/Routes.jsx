@@ -6,6 +6,7 @@ import LogIn from './LogIn';
 import WishList from './WishList';
 import ShowListing from './ShowListing';
 import CreateAccount from './CreateAccount';
+import SearchedShowListings from './SearchedShowListings';
 import Nav from './Nav';
 
 // <Nav history={window.history}>
@@ -20,6 +21,7 @@ const Routes = (
       <Route exact path="/create_account" component={ CreateAccount } />
       <Route exact path="/wishlist" component={ WishList } />
       <Route exact path="/listing/:id" component={ ShowListing }/>
+      <Route exact path="/searchlistings" component={ SearchedShowListings }/>
     </div>
   </Router>
 )
