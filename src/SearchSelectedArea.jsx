@@ -25,7 +25,7 @@ class SearchSelectedArea extends Component {
   }
 
   getDomainToken = () => {
-     const railsDomainTokenRequest = axios.get("http://localhost:3000/domain_token").then(result => {
+     const railsDomainTokenRequest = axios.get("https://find-homes.herokuapp.com/domain_token").then(result => {
        console.log(`The result is: ${result}`);
        this.setState({domain_token: result.data})
      })

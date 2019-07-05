@@ -186,7 +186,7 @@ export default class MapContainer extends Component {
   // gets domain token by making an axios request to the rails server which runs the logic to       generate a token
   // the results of axios query is then saved to state
   getDomainToken = () => {
-     const railsDomainTokenRequest = axios.get("http://localhost:3000/domain_token").then(result => {
+     const railsDomainTokenRequest = axios.get("https://find-homes.herokuapp.com/domain_token").then(result => {
        console.log(`The result is: ${result}`);
        this.setState({domain_token: result.data})
      })

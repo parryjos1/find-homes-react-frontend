@@ -3,7 +3,7 @@
 }
 
 body {
-  margin: 20px;
+  margin: 0px 20px 20px 0px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -55,6 +55,34 @@ code {
   max-width: 300px;
   padding: 1%;
 }
+
+.nav-bar {
+  display: block;
+  background-color: red;
+  width: 100vw;
+}
+
+#nav-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  /* display: inline-block; */
+}
+
+
+#nav-list div li {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.nav-left {
+
+}
+
+
 
 /* a {
 

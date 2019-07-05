@@ -13,22 +13,27 @@ class Nav extends Component {
   render(){
     return(
       <div>
-        <Link to="/">Find homes</Link>
-        |
-        {localStorage.getItem('userToken')
-        ?
-        <div>
-          <button onClick={this.logOut}>Log out</button>
-          <Link to="/wishlist">Wishlist</Link>
-        </div>
-        :
-        <div>
-          <Link to="/login">Log in</Link>
-          |
-          <Link to="/create_account">Create Account</Link>
-        </div>
-        }
-    </div>
+        <h2>Find Homes</h2>
+        <nav className='nav-bar'>
+          <ul id='nav-list'>
+            <li><Link to="/">Find homes</Link></li>
+            |
+            {localStorage.getItem('userToken')
+            ?
+            <div>
+            <li><button onClick={this.logOut}>Log out</button></li>
+            <li><Link to="/wishlist">Wishlist</Link></li>
+            </div>
+            :
+            <div>
+            <li><Link to="/login">Log in</Link></li>
+            |
+            <li><Link to="/create_account">Create Account</Link></li>
+            </div>
+            }
+          </ul>
+        </nav>
+      </div>
     )
 
   }

@@ -45,7 +45,7 @@ class CreateAccount extends Component {
   } // end of handleSubmit
 
   createUser = () => {
-    axios.post('http://localhost:3000/user', { user: {name: this.state.name, email: this.state.email, password: this.state.password}
+    axios.post('https://find-homes.herokuapp.com/user', { user: {name: this.state.name, email: this.state.email, password: this.state.password}
     }).then( res => {
       console.log(res);
 
@@ -61,7 +61,7 @@ class CreateAccount extends Component {
   }
 
   getToken = () => {
-    axios.post('http://localhost:3000/user_token', {"auth": {"email": this.state.email, "password": this.state.password}})
+    axios.post('https://find-homes.herokuapp.com/user_token', {"auth": {"email": this.state.email, "password": this.state.password}})
     .then( res => {
 
     jwt = res.data.jwt;

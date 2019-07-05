@@ -30,7 +30,7 @@ class ShowListing extends Component {
 
   addListing = (domainId, address, image, headline, latitude, longitude) => {
 
-    axios.post('http://localhost:3000/wishlists/', {domainId: domainId, address: address, image: image, headline: headline, latitude: latitude, longitude: longitude}, {
+    axios.post('https://find-homes.herokuapp.com/wishlists/', {domainId: domainId, address: address, image: image, headline: headline, latitude: latitude, longitude: longitude}, {
       headers: {
         Authorization: "Bearer " + localStorage.getItem('userToken')
       }
@@ -43,7 +43,7 @@ class ShowListing extends Component {
   }; //end of addListing
 
   getDomainTokenAndFetchListing = (domainId) => {
-     axios.get("http://localhost:3000/domain_token")
+     axios.get("https://find-homes.herokuapp.com/domain_token")
      .then(result => {
        console.log(`The domain token is:`, result.data.data);
        const domainToken = result.data.data;

@@ -21,7 +21,7 @@ class WishList extends Component {
   getWishList = () => {
     //userToken is stored in localStorage
 
-    axios.get('http://localhost:3000/wishlists', {
+    axios.get('https://find-homes.herokuapp.com/wishlists', {
       headers: {
         Authorization: "Bearer " + localStorage.getItem('userToken')
       }
@@ -47,7 +47,7 @@ class WishList extends Component {
 
     // delete listing from users wishList in the database
 
-    axios.delete(`http://localhost:3000/wishlists/` + id, {
+    axios.delete(`https://find-homes.herokuapp.com/wishlists/` + id, {
       headers: {
         Authorization: "Bearer " + localStorage.getItem('userToken')
       }
