@@ -53,6 +53,7 @@ class CreateAccount extends Component {
 
 
     }).catch( err => {
+      console.log(err);
       console.log(err.response.data.errors);
       this.setState({
         errorMessage: err.response.data.errors
@@ -79,7 +80,7 @@ class CreateAccount extends Component {
 
   render(){
     return(
-      <div>
+      <div className="component">
         <h1>Create a new account</h1>
         <div style={{color: 'red'}}>
           <ul>

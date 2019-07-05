@@ -60,7 +60,7 @@ class LogIn extends Component {
 
   render(){
     return(
-      <div>
+      <div className="component">
         <h1>Log in</h1>
         <div style={{color: 'red'}}>
           {this.state.errorMessage}

@@ -71,7 +71,7 @@ class ShowListing extends Component {
 
   render(){
     return(
-      <div>
+      <div className="component">
         <button onClick={()=>this.addListing(this.state.listing.id, this.state.listing.addressParts.displayAddress, this.state.listingImages[0].url, this.state.listing.headline, this.state.listing.geoLocation.latitude, this.state.listing.geoLocation.longitude )}>Add This house</button>
 
         <h2>{this.state.listing.headline}</h2>

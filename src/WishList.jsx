@@ -78,7 +78,7 @@ class WishList extends Component {
 
   render(){
     return(
-      <div>
+      <div className="component">
         <h2>Welcome, {this.state.name} </h2>
         <div>
         {

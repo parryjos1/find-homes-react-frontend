@@ -66,7 +66,7 @@ class SearchedShowListings extends Component {
 
     return(
 
-      <div>
+      <div className="component">
 
       <h1>Listings</h1>
 

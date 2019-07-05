@@ -69,7 +69,7 @@ class DisplayProperties extends Component {
 
     return(
 
-      <div>
+      <div className="component">
         {
           this.state.propertyResults.length > 0
           ?

@@ -5,7 +5,7 @@ import MapContainer from './MapContainer'
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" className="component">
       <h1>Google Maps Page</h1>
 
     <MapContainer />

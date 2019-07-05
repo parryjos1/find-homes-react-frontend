@@ -82,8 +82,17 @@ code {
 
 }
 
+.component {
+  padding: 1%;
+  background-color: blue;
+}
+
 
 
 /* a {
 
-} */
+a {
+  color: black;
+  text-decoration: none;
+
+}
