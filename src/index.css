@@ -58,7 +58,7 @@ code {
 
 .nav-bar {
   display: block;
-  background-color: red;
+  background-color: orange;
   width: 100vw;
 }
 
@@ -79,17 +79,27 @@ code {
 }
 
 .nav-left {
+  width: 50%;
+  /* background-color: pink; */
+  display: inline-block;
+
+
+}
+
+.nav-right {
+  width: 50%;
+  /* background-color: yellow; */
+  display: inline-block;
+  text-align: right;
 
 }
 
 .component {
   padding: 1%;
-  background-color: blue;
+  /* background-color: blue; */
 }
 
 
-
-/* a {
 
 a {
   color: black;

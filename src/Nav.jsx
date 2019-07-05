@@ -15,23 +15,23 @@ class Nav extends Component {
       <div>
         <h2>Find Homes</h2>
         <nav className='nav-bar'>
-          <ul id='nav-list'>
-            <li><Link to="/">Find homes</Link></li>
-            |
+            <div className='nav-left'>
+              <Link to="/">Find homes</Link>
+            </div><div className='nav-right'>
             {localStorage.getItem('userToken')
             ?
-            <div>
-            <li><button onClick={this.logOut}>Log out</button></li>
-            <li><Link to="/wishlist">Wishlist</Link></li>
-            </div>
-            :
-            <div>
-            <li><Link to="/login">Log in</Link></li>
-            |
-            <li><Link to="/create_account">Create Account</Link></li>
-            </div>
+              <div>
+                <button onClick={this.logOut}>Log out</button>
+                <Link to="/wishlist">Wishlist</Link>
+              </div>
+              :
+              <div>
+                <Link to="/login">Log in</Link>
+                |
+                <Link to="/create_account">Create Account</Link>
+              </div>
             }
-          </ul>
+          </div>
         </nav>
       </div>
     )
