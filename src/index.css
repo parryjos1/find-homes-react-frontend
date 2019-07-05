@@ -56,6 +56,13 @@ code {
   padding: 1%;
 }
 
-/* a {
+.component {
+  padding: 1%;
+  background-color: blue;
+}
 
-} */
+a {
+  color: black;
+  text-decoration: none;
+
+}
