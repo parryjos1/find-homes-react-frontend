@@ -1,68 +1,47 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-## hellloooo 
-## Available Scripts
 
-In the project directory, you can run:
+# Find Homes
 
-### `npm start`
+**Team Members:**
+* Josh Parry https://github.com/parryjos1
+* Amanda Chau https://github.com/amandachau3
 
-Runs the app in the development mode.<br>
-Open [https://find-homes.herokuapp.com](https://find-homes.herokuapp.com) to view it in the browser.
+**Links:**
+* Back-end Rails repo: https://github.com/amandachau36/rails-project-2
+* Back-end deployed to https://find-homes.herokuapp.com
+* Frontend React repo: https://github.com/parryjos1/find-homes-react-frontend
+* Website: https://parryjos1.github.io/find-homes-react-frontend/
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## Project 2 for GA's WDI
 
-### `npm test`
+**Goal:**  
+* To pull everything together by building a web application from the ground up.
+* To demonstrate mastery of topics (front and back-end web development) covered during the last 8 weeks.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Main Features**
+* Find properties for sale by drawing an area on Google Maps, option to specify minimum number of bedrooms/bathrooms and max price.
+* Find properties by typing in a suburb (traditional search)
+* User authentication with JSON Web Tokens (JWT)   
+* Logged-in users can add and delete properties from their search to their wish lists
+* The show page for properties is always up-to-date with the Domain API - only a small subset of data about each saved property is stored in the database and a new axios request is made for the show page.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**Backend Tech used**
+* Ruby v2.6.3
+* Ruby on Rails
+* Gems: pry-rails, knock, bcrypt, rails 12 factor, rack-cors, httparty
+* API: Domain API https://developer.domain.com.au
+* OAuth
+* JWT
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+**Frontend Tech used**
+* JavaScript
+* React
+* NPM packages: axios, google-map-react, react-router-dom, gh-pages
+* API: Google Maps Api    
+* HTML
+* CSS
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+**List of bugs**
+* Error may occur if you draw the search area too slowly on Google Maps
+* Search results will not be saved if you navigate backwards from the show page
+* Design is not responsive
