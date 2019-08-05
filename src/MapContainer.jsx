@@ -354,8 +354,6 @@ export default class MapContainer extends Component {
             </select>
           </label>
 
-
-
         </div>
 
 
@@ -364,12 +362,13 @@ export default class MapContainer extends Component {
 
 
 
-       <GoogleMapReact
-         bootstrapURLKeys={{ key: API_KEY }}
-         defaultCenter={this.props.center}
-         defaultZoom={this.props.zoom}
-          onGoogleApiLoaded={this.handleApiLoaded}
-       >
+         <GoogleMapReact
+           bootstrapURLKeys={{ key: API_KEY }}
+           defaultCenter={this.props.center}
+           defaultZoom={this.props.zoom}
+            onGoogleApiLoaded={this.handleApiLoaded}
+         >
+  
 
 
 
