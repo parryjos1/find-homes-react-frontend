@@ -12,8 +12,9 @@ const AnyReactComponent = ({ text }) => <div>{text}</div>;
 // const testMarkerArray = [{lat: -33.8659 , lng: 151.2117}, {lat: -33.8670 , lng: 151.2100}]
 const testMarkerArray = []
 
+require('dotenv').config();
 
-const API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
+const API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY2;
 console.log('API KEY', API_KEY, process.env);
 
 /* Stack-based Douglas Peucker line simplification routine
@@ -305,7 +306,6 @@ export default class MapContainer extends Component {
   } //submitForm()
 
 
-
   render(){
 
 
@@ -369,7 +369,7 @@ export default class MapContainer extends Component {
            defaultZoom={this.props.zoom}
             onGoogleApiLoaded={this.handleApiLoaded}
          >
-  
+
 
 
 
