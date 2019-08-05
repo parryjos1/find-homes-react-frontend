@@ -4,9 +4,7 @@
 
 body {
   margin: 0px 20px 20px 0px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: 'News Cycle', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -16,11 +14,19 @@ code {
     monospace;
 }
 
+
+a {
+  color: black;
+  text-decoration: none;
+
+}
+
+
+
 .listings {
   padding: 1%;
   background-color: rgba(246, 125, 65, 0.72);
   margin-top: 2%;
-  margin-bottom: 2%;
 
 }
 
@@ -57,53 +63,86 @@ code {
 }
 
 .nav-bar {
-  display: block;
+  display: inline-flex;
+  align-items: flex-end;
+  flex: nowrap;
   background-color: #0C2C54;
-  width: 100vw;
-  height: 40px;
+  opacity: 0.9;
+  height: 12vh;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  align-items: center;
+
+
+
 }
 
-#nav-list {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  /* display: inline-block; */
+
+.nav-bar a {
+  color: #EBEBEB;
+  padding-right: 2%;
+  padding-left: 2%;
 }
 
-
-#nav-list div li {
-  display: inline-block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-
-
+.nav-bar a:hover {
+  color: #FF3B00;
 }
 
 .nav-left {
-  width: 50%;
-  /* background-color: pink; */
+  font-family: 'Changa One', cursive;
+  font-size: 130%;
+  flex-grow: 2;
+  margin-left: 2%;
+
+}
+.nav-left div {
   display: inline-block;
-  padding-left: 2%;
-  padding-top: 1%;
+}
 
+.nav-left:nth-child(2) {
+  width: 70%;
+}
 
+.nav-left:first-child {
+  width: 30%;
 }
 
 .nav-right {
-  width: 50%;
-  /* background-color: yellow; */
-  display: inline-block;
+  font-weight: bold;
+  flex-grow: 1;
   text-align: right;
-  padding-right: 2%;
-  padding-top: 1%;
-
+  font-size: 90%;
+  margin-right: 2%;
+  margin-top: 2%;
+  height: 100%;
 }
+
+.nav-right div {
+  height: 100%;
+}
+
+.log-out {
+border: 0.1em solid #EBEBEB;
+font-family: 'News Cycle', sans-serif;
+color: #EBEBEB;
+background: none;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 90%;
+font-weight: 800;
+margin:0 0.3em 0.3em 0;
+-webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+cursor: pointer;
+}
+
+
 
 .component {
   padding: 3%;
-  /* background-color: blue; */
 }
 
 #map {
@@ -114,10 +153,4 @@ code {
 
 .title {
   padding-left: 2%;
-}
-
-a {
-  color: black;
-  text-decoration: none;
-
 }

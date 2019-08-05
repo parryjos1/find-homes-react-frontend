@@ -13,23 +13,26 @@ class Nav extends Component {
   render(){
     return(
       <div>
-        <h1 className="title">Find Homes</h1>
-        <nav className='nav-bar'>
-            <div className='nav-left'>
-              <Link to="/">Find homes</Link>
-            </div><div className='nav-right'>
+        <nav className="nav-bar">
+            <div className="nav-left">
+              <div>
+              <img src={process.env.PUBLIC_URL + '/images/house-128.png'} height="40vh"></img>
+              </div><div>
+              <Link to="/">Find Homes</Link>
+              </div>
+            </div><div className="nav-right">
             {localStorage.getItem('userToken')
             ?
               <div>
                 <Link to="/wishlist">Wishlist</Link>
-                |
-                <button onClick={this.logOut}>Log out</button>
+                &nbsp; &nbsp;
+                <button class="log-out" onClick={this.logOut}>Log out</button>
               </div>
               :
               <div>
-                <Link to="/login">Log in</Link>
-                |
                 <Link to="/create_account">Create Account</Link>
+                &nbsp; &nbsp;
+                <Link to="/login">Log In</Link>
               </div>
             }
           </div>
