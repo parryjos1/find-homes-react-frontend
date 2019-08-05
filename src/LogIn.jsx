@@ -36,6 +36,9 @@ class LogIn extends Component {
 
   //make a post request to the backend, if user exists and password is correct (this is managed by knock gem)
   //then send back JWT
+
+
+
   axios.post('https://find-homes.herokuapp.com/user_token', {"auth": {"email": email, "password": password}})
   .then( res => {
 
