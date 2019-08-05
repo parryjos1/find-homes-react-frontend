@@ -5,6 +5,7 @@
   "homepage": "https://parryjos1.github.io/find-homes-react-frontend/",
   "dependencies": {
     "axios": "^0.19.0",
+    "dotenv": "^8.0.0",
     "gh-pages": "^2.0.1",
     "google-map-react": "^1.1.4",
     "google-maps-react": "^2.0.2",
