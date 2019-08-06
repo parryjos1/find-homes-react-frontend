@@ -1,17 +1,13 @@
 import React from 'react';
-// npm install --save react-router-dom
 import {HashRouter as Router, Route} from 'react-router-dom';
-import MapContainer from './MapContainer';
-import LogIn from './LogIn';
-import WishList from './WishList';
-import ShowListing from './ShowListing';
-import CreateAccount from './CreateAccount';
-import SearchedShowListings from './SearchedShowListings';
-import Nav from './Nav';
-import Footer from './Footer'
-
-// <Nav history={window.history}>
-// path without exact allows the nav component to render on every page with
+import MapContainer from './components/MapContainer';
+import LogIn from './components/LogIn';
+import WishList from './components/WishList';
+import ShowListing from './components/ShowListing';
+import CreateAccount from './components/CreateAccount';
+import SearchedShowListings from './components/SearchedShowListings';
+import Nav from './components/Nav';
+import Footer from './components/Footer'
 
 const Routes = (
   <Router>

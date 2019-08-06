@@ -9,7 +9,6 @@ import DisplayProperties from './DisplayProperties'
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
-// const testMarkerArray = [{lat: -33.8659 , lng: 151.2117}, {lat: -33.8670 , lng: 151.2100}]
 const testMarkerArray = []
 
 require('dotenv').config();
@@ -140,10 +139,10 @@ function GDouglasPeucker (source, kink)
 
 }
 
-const mapStyles = {
-  width: '50%',
-  height: '50%',
-};
+// const mapStyles = {
+//   width: '50%',
+//   height: '50%',
+// };
 
 export default class MapContainer extends Component {
 
@@ -310,7 +309,8 @@ export default class MapContainer extends Component {
 
 
     return (
-      <div style={{ height: '70vh', width: '90vw', margin: 'auto' }}>
+
+      <div style={{ height: '60vh', width: '80vw', margin: 'auto' }}>
 
          <form onSubmit={this.submitForm.bind(this)} bedrooms={this.state.bedrooms}>
            <label>
