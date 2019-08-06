@@ -80,26 +80,33 @@ class CreateAccount extends Component {
 
   render(){
     return(
-      <div className="component">
-        <h1>Create a new account</h1>
-        <div style={{color: 'red'}}>
-          <ul>
-          {
-              this.state.errorMessage.map( error => (
-              <li>{error}</li>
-              ))
-          }
+      <div className="log-in-background create-account-background">
+        <div className="log-in create-account">
+          <div style={{color: 'red'}}>
+            <ul>
+            {
+                this.state.errorMessage.map( error => (
+                <li>{error}</li>
+                ))
+            }
 
-          </ul>
+            </ul>
+
+          </div>
+          <form onSubmit={ this.handleSubmit }>
+            <input type="text" placeholder="Your name" className="log-in-form" onChange={ this.handleInputName }></input>
+            <br/>
+            <br/>
+            <input type="text" placeholder="Email" className="log-in-form" onChange={ this.handleInputEmail }></input>
+            <br/>
+            <br/>
+            <input type="password" placeholder="Password" className="log-in-form" onChange={ this.handleInputPassword }></input>
+            <br/>
+            <br/>
+            <input className="log-in-submit" type="submit" value="SIGN UP"></input>
+          </form>
 
         </div>
-        <form onSubmit={ this.handleSubmit }>
-          <input type="text" placeholder="Your name" onChange={ this.handleInputName }></input><br/>
-          <input type="text" placeholder="Email" onChange={ this.handleInputEmail }></input><br/>
-          <input type="password" placeholder="Password" onChange={ this.handleInputPassword }></input><br/>
-          <input type="submit" value="Create new account"></input>
-        </form>
-
       </div>
     )
   }

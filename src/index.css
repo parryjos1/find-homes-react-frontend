@@ -180,18 +180,21 @@ cursor: pointer;
 
 .log-in-background {
    background-image: url("/images/background.jpeg");
-   /* url("https://rimh2.domainstatic.com.au/o2ydr2Nz1VVmq9Ze2qNlLZuEIwk=/fit-in/1920x1080/filters:format(jpeg):quality(80):no_upscale()/http://b.domainstatic.com.au.s3-website-ap-southeast-2.amazonaws.com/3a54a6be-2e07-49fa-b882-0daff355368a-w1919-h1080"); */
    background-color: #EBEBEB;
    width: 100%;
    height: 80vh;
    position: relative;
    top: 12vh;
-   /* left: 0; */
+
 
    background-position: center;
    background-repeat: no-repeat;
    background-size: cover;
 
+}
+
+.create-account-background {
+  background-image: url("/images/background3.jpeg");
 }
 
 .log-in {
@@ -205,6 +208,10 @@ cursor: pointer;
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 1em;
+}
+
+.create-account {
+  background-color: rgba(0,0,0, 0.6);
 }
 
 .log-in-form {
