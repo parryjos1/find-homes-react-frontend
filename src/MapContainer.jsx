@@ -371,11 +371,9 @@ export default class MapContainer extends Component {
         >
 
 
-
-
       {
         this.state.selectedPropertyLocations.length > 0
-        ?
+        &&
          this.state.selectedPropertyLocations.map(p =>
         <AnyReactComponent
           lat={p.listing.propertyDetails.latitude}
@@ -383,8 +381,6 @@ export default class MapContainer extends Component {
           text= <Link to={`/listing/${p.listing.id}`}><strong>X</strong></Link>
         />
       )
-      :
-      <p></p>
     }
 
 
