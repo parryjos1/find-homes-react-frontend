@@ -8,6 +8,7 @@ import ShowListing from './ShowListing';
 import CreateAccount from './CreateAccount';
 import SearchedShowListings from './SearchedShowListings';
 import Nav from './Nav';
+import Footer from './Footer'
 
 // <Nav history={window.history}>
 // path without exact allows the nav component to render on every page with
@@ -22,6 +23,7 @@ const Routes = (
       <Route exact path="/wishlist" component={ WishList } />
       <Route exact path="/listing/:id" component={ ShowListing }/>
       <Route exact path="/searchlistings" component={ SearchedShowListings }/>
+      <Route path="/" component={ Footer } />
     </div>
   </Router>
 )
