@@ -10,6 +10,7 @@ import DisplayProperties from './DisplayProperties'
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
 // const testMarkerArray = [{lat: -33.8659 , lng: 151.2117}, {lat: -33.8670 , lng: 151.2100}]
+
 const testMarkerArray = []
 
 require('dotenv').config();
@@ -150,6 +151,7 @@ export default class MapContainer extends Component {
   constructor(props){
     super(props);
 
+    // map & maps are from GoogleReactComponent - wrapper for map
     this.state = {
       map: null,
       maps: null,
