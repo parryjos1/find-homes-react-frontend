@@ -87,16 +87,18 @@ class WishList extends Component {
           ?
           this.state.listings.map( (listing, index) => (
             <div key={listing.id} className="listings">
-              <div className="">
+              <div>
                 <Link to={`/listing/${listing.domain_id}`}>
                   <img className="listings-img" src={listing.image}/>
                 </Link> <br/>
-                <button onClick={ ()=>this.deleteListing(listing.id, index) }> Delete
+              </div>
+              <div className="listings-delete">
+                <button className="delete" onClick={ ()=>this.deleteListing(listing.id, index) }> DELETE
                 </button>
               </div>
               <Link to={`/listing/${listing.domain_id}`}>
-                  <div className="">
-                    <p><strong>{listing.headline}</strong></p>
+                  <div className="listings-headline-address">
+                    <h4>{listing.headline}</h4>
                     <p>{listing.address}</p>
                   </div>
               </Link>

@@ -93,7 +93,7 @@ class CreateAccount extends Component {
             </ul>
 
           </div>
-          <form onSubmit={ this.handleSubmit s}>
+          <form onSubmit={ this.handleSubmit }>
             <input type="text" placeholder="Your name" className="log-in-form" onChange={ this.handleInputName }></input>
             <br/>
             <br/>
