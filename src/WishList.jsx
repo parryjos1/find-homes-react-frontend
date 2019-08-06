@@ -78,27 +78,29 @@ class WishList extends Component {
 
   render(){
     return(
-      <div className="component">
-        <h2>Welcome, {this.state.name} </h2>
-        <div>
+      <div className="wishlist">
+        <h2>Welcome, <span className="blue-font">{this.state.name}</span> </h2>
+        <p>Your Wishlist</p>
+        <div className="listings-container">
         {
           this.state.listings.length > 0
           ?
           this.state.listings.map( (listing, index) => (
-                      <div key={listing.id} className="listings">
+            <div key={listing.id} className="listings">
+              <div className="">
+                <Link to={`/listing/${listing.domain_id}`}>
+                  <img className="listings-img" src={listing.image}/>
+                </Link> <br/>
+                <button onClick={ ()=>this.deleteListing(listing.id, index) }> Delete
+                </button>
+              </div>
               <Link to={`/listing/${listing.domain_id}`}>
-
-                    <div className="listings-left">
-                      <p><strong>{listing.headline}</strong></p>
-                      <p>{listing.address}</p>
-                    </div></Link><div className="listings-right">
-                    <Link to={`/listing/${listing.domain_id}`}>
-                      <img src={listing.image}/>
-                      </Link>
-                      <button onClick={ ()=>this.deleteListing(listing.id, index) }> Delete
-                      </button>
-                    </div>
+                  <div className="">
+                    <p><strong>{listing.headline}</strong></p>
+                    <p>{listing.address}</p>
                   </div>
+              </Link>
+            </div>
 
             ))
           :
@@ -114,3 +116,30 @@ class WishList extends Component {
 }
 
 export default WishList;
+
+
+// <div className="listings-container">
+// {
+//   this.state.listings.length > 0
+//   ?
+//   this.state.listings.map( (listing, index) => (
+//               <div key={listing.id} className="listings">
+//       <Link to={`/listing/${listing.domain_id}`}>
+//
+//             <div className="listings-left">
+//               <p><strong>{listing.headline}</strong></p>
+//               <p>{listing.address}</p>
+//             </div></Link><div className="listings-right">
+//             <Link to={`/listing/${listing.domain_id}`}>
+//               <img src={listing.image}/>
+//               </Link>
+//               <button onClick={ ()=>this.deleteListing(listing.id, index) }> Delete
+//               </button>
+//             </div>
+//           </div>
+//
+//     ))
+//   :
+//   <p>loading</p>
+//
+// }
