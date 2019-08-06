@@ -18,21 +18,21 @@ class Nav extends Component {
               <div>
               <img src={process.env.PUBLIC_URL + '/images/house-128.png'} height="40vh"></img>
               </div><div>
-              <Link to="/">Find Homes</Link>
+              <Link to="/">FIND HOMES</Link>
               </div>
             </div><div className="nav-right">
             {localStorage.getItem('userToken')
             ?
               <div>
-                <Link to="/wishlist">Wishlist</Link>
+                <Link to="/wishlist">WISHLIST</Link>
                 &nbsp; &nbsp;
-                <button class="log-out" onClick={this.logOut}>Log out</button>
+                <button class="log-out" onClick={this.logOut}>LOG OUT</button>
               </div>
               :
               <div>
-                <Link to="/create_account">Create Account</Link>
+                <Link to="/create_account">SIGN UP</Link>
                 &nbsp; &nbsp;
-                <Link to="/login">Log In</Link>
+                <Link to="/login">LOG IN</Link>
               </div>
             }
           </div>

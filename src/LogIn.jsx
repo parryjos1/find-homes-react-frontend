@@ -63,18 +63,22 @@ class LogIn extends Component {
 
   render(){
     return(
-      <div className="component">
-        <h1>Log in</h1>
-        <div style={{color: 'red'}}>
-          {this.state.errorMessage}
+      <div className="log-in-background">
+        <div className="log-in">
+          <div style={{color: 'red'}}>
+            {this.state.errorMessage}
+          </div>
+          <form onSubmit={ this.handleSubmit }>
+            <br/>
+            <input className="log-in-form" type="text" placeholder="Your email" onChange={ this.handleInputEmail }></input>
+            <br/>
+            <br/>
+            <input className="log-in-form" type="text" placeholder="Password" type="password" onChange={ this.handleInputPassword }></input>
+            <br/>
+            <br/>
+            <input className="log-in-submit" type="submit" value="LOG IN"></input>
+          </form>
         </div>
-        <form onSubmit={ this.handleSubmit }>
-          <input type="text" placeholder="Your email" onChange={ this.handleInputEmail }></input>
-          <br/>
-          <input type="text" placeholder="Password" type="password" onChange={ this.handleInputPassword }></input>
-          <br/>
-          <input type="submit" value="Log In"></input>
-        </form>
 
       </div>
     )
