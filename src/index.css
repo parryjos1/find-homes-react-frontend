@@ -152,7 +152,7 @@ cursor: pointer;
    height: 80vh;
    position: relative;
    top: 12vh;
-   left: 0;
+   /* left: 0; */
 
    background-position: center;
    background-repeat: no-repeat;
@@ -215,15 +215,35 @@ width: 100%;
 }
 
 .log-in-submit:hover {
-  color: red;
+  color: #FF3B00;
 }
 
 .log-in-form {
   background: transparent;
   color: #EBEBEB;
-  input:focus {outline:0;};
+
 }
 
+.footer {
+  position: relative;
+  top: 12vh;
+  height: 8vh;
+  background-color: #0C2C54;
+  display: flex;
+  color: #EBEBEB;
+  font-size: 60%;
+  justify-content: space-between;
+  padding-right: 2%;
+  padding-left: 2%;
+
+}
+.footer a{
+  color: #EBEBEB;
+}
+
+.footer a:hover{
+  color: #FF3B00;
+}
 
 /* .component {
   padding: 3%;
