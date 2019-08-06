@@ -15,7 +15,7 @@ const testMarkerArray = []
 require('dotenv').config();
 
 const API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY2;
-console.log('API KEY', API_KEY, process.env);
+// console.log('API KEY', API_KEY, process.env);
 
 /* Stack-based Douglas Peucker line simplification routine
    returned is a reduced GLatLng array
@@ -310,97 +310,95 @@ export default class MapContainer extends Component {
 
 
     return (
-      <div style={{ height: '100vh', width: '90%' }}>
+      <div style={{ height: '70vh', width: '90vw', margin: 'auto' }}>
 
-          <form onSubmit={this.submitForm.bind(this)} bedrooms={this.state.bedrooms}>
-            <label>
+         <form onSubmit={this.submitForm.bind(this)} bedrooms={this.state.bedrooms}>
+           <label>
 
-              Search Suburb:
-              <input type="text" name="suburb" value={this.state.value} placeholder=" 'Glebe'" onChange={this.handleChange.bind(this)} />
+             Search Suburb:
+             <input type="text" name="suburb" value={this.state.value} placeholder=" 'Glebe'" onChange={this.handleChange.bind(this)} />
 
-            </label>
+           </label>
 
-            <input type="submit" value="Search" />
-          </form>
+           <input type="submit" value="Search" />
+         </form>
 
-        <div>
-          <label>
-            Min Bedrooms:
-            <select value={this.state.bedrooms} name='bedrooms' onChange={this.handleChange.bind(this)}>
-              <option value='0'>0</option>
-              <option value='1'>1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-            </select>
-          </label>
-          <label>
-            Min Bathrooms:
-            <select value={this.state.bathrooms} name='bathrooms' onChange={this.handleChange.bind(this)}>
-              <option value='0'>0</option>
-              <option value='1'>1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-            </select>
-          </label>
-          <label>
-            Max Price:
-            <select value={this.state.max_price} name='max_price' onChange={this.handleChange.bind(this)}>
-              <option value="">-</option>
-              <option value="1000000">1,000,000</option>
-              <option value="2000000">2,000,000</option>
-              <option value="3000000">3,000,000</option>
-              <option value="5000000">5,000,000</option>
-            </select>
-          </label>
+       <div>
+         <label>
+           Min Bedrooms:
+           <select value={this.state.bedrooms} name='bedrooms' onChange={this.handleChange.bind(this)}>
+             <option value='0'>0</option>
+             <option value='1'>1</option>
+             <option value="2">2</option>
+             <option value="3">3</option>
+             <option value="4">4</option>
+           </select>
+         </label>
+         <label>
+           Min Bathrooms:
+           <select value={this.state.bathrooms} name='bathrooms' onChange={this.handleChange.bind(this)}>
+             <option value='0'>0</option>
+             <option value='1'>1</option>
+             <option value="2">2</option>
+             <option value="3">3</option>
+             <option value="4">4</option>
+           </select>
+         </label>
+         <label>
+           Max Price:
+           <select value={this.state.max_price} name='max_price' onChange={this.handleChange.bind(this)}>
+             <option value="">-</option>
+             <option value="1000000">1,000,000</option>
+             <option value="2000000">2,000,000</option>
+             <option value="3000000">3,000,000</option>
+             <option value="5000000">5,000,000</option>
+           </select>
+         </label>
 
-        </div>
-
-
-
-        <button onClick={this.freeDraw}>Draw area</button>
+       </div>
 
 
 
-         <GoogleMapReact
-           bootstrapURLKeys={{ key: API_KEY }}
-           defaultCenter={this.props.center}
-           defaultZoom={this.props.zoom}
-            onGoogleApiLoaded={this.handleApiLoaded}
-         >
+       <button onClick={this.freeDraw}>Draw area</button>
+
+
+
+        <GoogleMapReact
+          bootstrapURLKeys={{ key: API_KEY }}
+          defaultCenter={this.props.center}
+          defaultZoom={this.props.zoom}
+           onGoogleApiLoaded={this.handleApiLoaded}
+        >
 
 
 
 
-       {
-         this.state.selectedPropertyLocations.length > 0
-         ?
-          this.state.selectedPropertyLocations.map(p =>
-         <AnyReactComponent
-           lat={p.listing.propertyDetails.latitude}
-           lng={p.listing.propertyDetails.longitude}
-           text= <Link to={`/listing/${p.listing.id}`}><strong>X</strong></Link>
-         />
-       )
+      {
+        this.state.selectedPropertyLocations.length > 0
+        ?
+         this.state.selectedPropertyLocations.map(p =>
+        <AnyReactComponent
+          lat={p.listing.propertyDetails.latitude}
+          lng={p.listing.propertyDetails.longitude}
+          text= <Link to={`/listing/${p.listing.id}`}><strong>X</strong></Link>
+        />
+      )
+      :
+      <p></p>
+    }
+
+
+      </GoogleMapReact>
+      {
+        this.state.searchAreaPath.length > 0
+        ?
+       <DisplayProperties polygonDrawn={this.state.searchAreaPath} domainToken={this.state.domain_token} selectedPropCallBack={this.selectedPropCallBack} bedrooms={this.state.bedrooms} bathrooms={this.state.bathrooms} maxPrice={this.state.max_price}/>
        :
-       <p></p>
-     }
-
-
-       </GoogleMapReact>
-       {
-         this.state.searchAreaPath.length > 0
-         ?
-        <DisplayProperties polygonDrawn={this.state.searchAreaPath} domainToken={this.state.domain_token} selectedPropCallBack={this.selectedPropCallBack} bedrooms={this.state.bedrooms} bathrooms={this.state.bathrooms} maxPrice={this.state.max_price}/>
-        :
-        <p>Select an area on the map to search</p>
-       }
-      </div>
-    );
-  }
-
-
+       <p>Select an area on the map to search</p>
+      }
+     </div>
+   );
+ }
 } // End of MapContainer
 
 

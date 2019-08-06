@@ -119,5 +119,10 @@ code {
 a {
   color: black;
   text-decoration: none;
+}
+
+.gmapsReact {
+  margin-left: 30px;
+  /* position: absolute; */
 
 }
