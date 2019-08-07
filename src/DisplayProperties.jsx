@@ -69,32 +69,21 @@ class DisplayProperties extends Component {
 
     return(
 
-      <div className="listings-container">
+      <div className="component">
         {
           this.state.propertyResults.length > 0
           ?
           this.state.propertyResults.map( p =>
-            <div key={p.listing.id} className="listings">
-              <div>
-                <Link to={`/listing/${p.listing.id}`}>
-                  <img className="listings-img" src={p.listing.media[0].url} ></img>
-                </Link>
+            <Link to={`/listing/${p.listing.id}`}>
+              <div className='listings'>
+                <div key={p.listing.id} className='listings-left'>
+                  {p.listing.propertyDetails.displayableAddress}
+                </div><div className='listings-right'>
+                  <img src={p.listing.media[0].url} ></img>
+                  </div>
+                <br></br>
               </div>
-              <Link to={`/listing/${p.listing.id}`}>
-                <div className='listings-headline-address'>
-                  <p>{p.listing.propertyDetails.displayableAddress}</p>
-                </div>
-                <div className="home-icons">
-                  <img src={process.env.PUBLIC_URL + '/images/icon-bed.png'}></img>
-                  <span class="home-icons-numbers">{p.listing.propertyDetails.bedrooms}</span>
-                  <span class="home-icons-numbers"><img src={process.env.PUBLIC_URL + '/images/icon-bathtub.png'}></img>
-                  {p.listing.propertyDetails.bathrooms}</span>
-                <span class="home-icons-numbers cars"><img src={process.env.PUBLIC_URL + '/images/icon-car.png'}></img>
-                  {p.listing.propertyDetails.carspaces}</span>
-                </div>
-              </Link>
-            </div>
-
+            </Link>
           )
 
          :

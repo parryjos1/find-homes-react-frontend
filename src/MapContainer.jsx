@@ -9,6 +9,8 @@ import DisplayProperties from './DisplayProperties'
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
+// const testMarkerArray = [{lat: -33.8659 , lng: 151.2117}, {lat: -33.8670 , lng: 151.2100}]
+
 const testMarkerArray = []
 
 require('dotenv').config();
@@ -139,10 +141,10 @@ function GDouglasPeucker (source, kink)
 
 }
 
-// const mapStyles = {
-//   width: '50%',
-//   height: '50%',
-// };
+const mapStyles = {
+  width: '50%',
+  height: '50%',
+};
 
 export default class MapContainer extends Component {
 
@@ -310,8 +312,7 @@ export default class MapContainer extends Component {
 
 
     return (
-      <div className="mapContainer">
-      <div style={{ height: '80vh', width: '80vw', margin: 'auto' }}>
+      <div style={{ height: '70vh', width: '90vw', margin: 'auto' }}>
 
          <form onSubmit={this.submitForm.bind(this)} bedrooms={this.state.bedrooms}>
            <label>
@@ -386,18 +387,13 @@ export default class MapContainer extends Component {
 
 
       </GoogleMapReact>
-      </div>
-      <br />
-      <div>
       {
         this.state.searchAreaPath.length > 0
         ?
-
        <DisplayProperties polygonDrawn={this.state.searchAreaPath} domainToken={this.state.domain_token} selectedPropCallBack={this.selectedPropCallBack} bedrooms={this.state.bedrooms} bathrooms={this.state.bathrooms} maxPrice={this.state.max_price}/>
        :
        <p>Select an area on the map to search</p>
       }
-     </div>
      </div>
    );
  }
@@ -417,7 +413,6 @@ export default class MapContainer extends Component {
     -
 3.
 
-
-
+Do something you're so good at
 
 */
