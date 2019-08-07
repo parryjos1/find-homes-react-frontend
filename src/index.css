@@ -307,9 +307,15 @@ a {
   color: black;
   text-decoration: none;
 }
-
+/*
 .gmapsReact {
   margin-left: 30px;
-  /* position: absolute; */
+  position: absolute;
 
+} */
+
+.mapContainer {
+  /* height: 80vh; */
+  position: relative;
+  top: 12vh;
 }

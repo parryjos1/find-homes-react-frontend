@@ -309,8 +309,8 @@ export default class MapContainer extends Component {
 
 
     return (
-
-      <div style={{ height: '60vh', width: '80vw', margin: 'auto' }}>
+      <div className="mapContainer">
+      <div style={{ height: '80vh', width: '80vw', margin: 'auto' }}>
 
          <form onSubmit={this.submitForm.bind(this)} bedrooms={this.state.bedrooms}>
            <label>
@@ -385,13 +385,18 @@ export default class MapContainer extends Component {
 
 
       </GoogleMapReact>
+      </div>
+      <br />
+      <div>
       {
         this.state.searchAreaPath.length > 0
         ?
+
        <DisplayProperties polygonDrawn={this.state.searchAreaPath} domainToken={this.state.domain_token} selectedPropCallBack={this.selectedPropCallBack} bedrooms={this.state.bedrooms} bathrooms={this.state.bathrooms} maxPrice={this.state.max_price}/>
        :
        <p>Select an area on the map to search</p>
       }
+     </div>
      </div>
    );
  }
@@ -411,6 +416,7 @@ export default class MapContainer extends Component {
     -
 3.
 
-Do something you're so good at
+
+
 
 */
