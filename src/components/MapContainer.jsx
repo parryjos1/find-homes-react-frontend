@@ -190,6 +190,7 @@ export default class MapContainer extends Component {
      const railsDomainTokenRequest = axios.get("https://find-homes.herokuapp.com/domain_token").then(result => {
        console.log(`The result is: ${result}`);
        this.setState({domain_token: result.data})
+       localStorage.setItem('domainToken', result.data.data)
      })
      console.log(`railsDomainTokenRequest is: ${railsDomainTokenRequest}`);
      return railsDomainTokenRequest
@@ -290,20 +291,21 @@ export default class MapContainer extends Component {
   }
 
   // Upon submitting suburb form route to SearchedShowListing Route and pass along these state. Can be found under: history > location > staten >
-  submitForm (e) {
+  searchBySuburb = (e) => {
     e.preventDefault()
 
     this.props.history.push({
-      pathname: '/searchlistings',
+      // pathname: '/searchlistings',
+      pathname: '/searchproperties',
       state: {
-        bedrooms: this.state.bedrooms,
-        bathrooms: this.state.bathrooms,
-        max_price: this.state.max_price,
-        suburb: this.state.suburb,
+        // bedrooms: this.state.bedrooms,
+        // bathrooms: this.state.bathrooms,
+        // max_price: this.state.max_price,
+        // suburb: this.state.suburb,
         domainToken: this.state.domain_token.data
       }
     })
-  } //submitForm()
+  } //searchBySuburb()
 
 
   render(){
@@ -312,17 +314,6 @@ export default class MapContainer extends Component {
     return (
       <div className="mapContainer">
       <div style={{ height: '80vh', width: '80vw', margin: 'auto' }}>
-
-         <form onSubmit={this.submitForm.bind(this)} bedrooms={this.state.bedrooms}>
-           <label>
-
-             Search Suburb:
-             <input type="text" name="suburb" value={this.state.value} placeholder=" 'Glebe'" onChange={this.handleChange.bind(this)} />
-
-           </label>
-
-           <input type="submit" value="Search" />
-         </form>
 
        <div>
          <label>
@@ -360,7 +351,8 @@ export default class MapContainer extends Component {
 
 
 
-       <button onClick={this.freeDraw}>Draw area</button>
+       <button onClick={this.freeDraw}>Search with Map</button>
+       <button onClick={this.searchBySuburb}>Search By Suburb</button>
 
 
 
