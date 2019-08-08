@@ -100,9 +100,7 @@ class SearchedShowListings extends Component {
                 </div>
               </Link>
             </div>
-
           )
-
          :
          <p>Loading...</p>
         }

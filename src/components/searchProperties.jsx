@@ -5,7 +5,8 @@ import Slider, { Range } from 'rc-slider';
 import SearchedShowListings from './SearchedShowListings';
 
 import 'rc-slider/assets/index.css';
-const wrapperStyle = { width: 400, margin: 50 };
+// const wrapperStyle = { width: 400, margin: 50 };
+const wrapperStyle = { width: "80vw", margin: "25px"};
 
 class SearchProperties extends Component {
 
@@ -60,29 +61,29 @@ class SearchProperties extends Component {
           <input id="search-bar-searchproperties" type="text" placeholder="Search suburb e.g. Bronte" onChange={this.onSearchChange} />
         </form>
 
-
-        <div style={wrapperStyle} className="searchBedrooms">
-          <p>Min Bedrooms</p>
-          <Slider min={0} defaultValue={0} marks={{ 0: 0, 1: 1, 2: 2, 3: 3, 4: 4}} step={null} onChange={this.onSliderChangeBedrooms} max={4} />
-        </div>
-        <div style={wrapperStyle} className="searchBathrooms">
-          <p>Min Bathrooms</p>
-          <Slider min={0} defaultValue={0} marks={{ 0: 0, 1: 1, 2: 2, 3: 3, 4: 4}} step={null} onChange={this.onSliderChangeBathrooms} max={4} />
-        </div>
-        <div style={wrapperStyle} className="maxPrice">
-          <p>Max Price ($m)</p>
-          <Slider min={0} defaultValue={0} marks={{ 0: 'Any', 2000000: 2 , 4000000: 4 , 6000000: 6 , 8000000: 8 , 10000000: 10 }} step={null} onChange={this.onSliderChangeMaxPrice} max={10000000} />
+        <div>
+          <div style={wrapperStyle} className="searchBedrooms">
+            <p>Min Bedrooms</p>
+            <Slider min={0} defaultValue={0} marks={{ 0: 0, 1: 1, 2: 2, 3: 3, 4: 4}} step={null} onChange={this.onSliderChangeBedrooms} max={4} />
+          </div>
+          <div style={wrapperStyle} className="searchBathrooms">
+            <p>Min Bathrooms</p>
+            <Slider min={0} defaultValue={0} marks={{ 0: 0, 1: 1, 2: 2, 3: 3, 4: 4}} step={null} onChange={this.onSliderChangeBathrooms} max={4} />
+          </div>
+          <div style={wrapperStyle} className="maxPrice">
+            <p>Max Price ($m)</p>
+            <Slider min={0} defaultValue={0} marks={{ 0: 'Any', 2000000: 2 , 4000000: 4 , 6000000: 6 , 8000000: 8 , 10000000: 10 }} step={null} onChange={this.onSliderChangeMaxPrice} max={10000000} />
+          </div>
         </div>
         <form onSubmit={this.handleSubmit}>
           <input type="submit" id="submit-searchproperties" />
         </form>
 
 
-
         <div>
         {
           this.state.propertySearch === 'selected'
-          &&
+          ?
          <SearchedShowListings
            domainToken={this.state.domainToken}
            bedrooms={this.state.bedrooms}
@@ -90,7 +91,8 @@ class SearchProperties extends Component {
            maxPrice={this.state.max_price}
            suburb={this.state.suburb}
          />
-
+       :
+       <div id="search-properties-spacer"></div>
         }
        </div>
 
