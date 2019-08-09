@@ -4,6 +4,7 @@ import axios from 'axios';
 import Slider, { Range } from 'rc-slider';
 import SearchedShowListings from './SearchedShowListings';
 
+// slider built using --> https://www.npmjs.com/package/rc-slider 
 import 'rc-slider/assets/index.css';
 // const wrapperStyle = { width: 400, margin: 50 };
 const wrapperStyle = { width: "80vw", margin: "25px"};

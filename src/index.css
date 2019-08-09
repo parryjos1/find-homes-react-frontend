@@ -44,6 +44,7 @@ a {
 .listings-container {
   display: flex;
   flex-wrap: wrap;
+  /* margin-top: 51vh; */
 
 }
 
@@ -421,8 +422,49 @@ a {
   width: 20%;
   margin-top: 30px;
   margin-left: 38vw;
+  font-weight: bold;
+}
+
+#submit-searchproperties:hover {
+  background-color: #FF3B00;
+  color: #ECECEC;
 }
 
 #search-properties-spacer {
   margin-top: 28vh;
+}
+
+.map-container-button button{
+  border: none;
+  color: #FF3B00;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 15px;
+  margin-left: 11vw;
+  border: 3px solid #FF3B00;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+.map-container-button button:hover {
+  background-color: #FF3B00;
+  cursor: pointer;
+  color: #ECECEC;
+}
+
+button#search-with-map {
+    min-width: 232px;
+}
+
+div#select-area-on-map {
+  margin-top: 50vh;
+  text-align: center;
+  margin-bottom: 10vh;
+}
+
+.homepage-house-display {
+  margin-top: 51vh;
 }
