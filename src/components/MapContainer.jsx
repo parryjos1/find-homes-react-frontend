@@ -394,7 +394,7 @@ export default class MapContainer extends Component {
        <DisplayProperties polygonDrawn={this.state.searchAreaPath} domainToken={this.state.domain_token} selectedPropCallBack={this.selectedPropCallBack} bedrooms={this.state.bedrooms} bathrooms={this.state.bathrooms} maxPrice={this.state.max_price}/>
        </div>
        :
-       <div id="select-area-on-map">Select DRAW WITH MAP button and draw a circle on map</div>
+       <div id="select-area-on-map">Select SEARCH WITH MAP button and draw a circle on map</div>
       }
      </div>
      </div>
