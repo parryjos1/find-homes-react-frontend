@@ -14,12 +14,22 @@ class SearchedShowListings extends Component {
 
   // Method to pull data passed down when we routed to the state
   updateState = () => {
+
+    //fixes bug of having no maximum
+    // const maxPrice = this.props.max_price
+    // if (maxPrice === 0) {
+    //   this.setState({max_price: 100000000})
+    // } else {
+    //   this.setState({max_price:this.props.max_price})
+    // }
+
     this.setState({
-      domainToken: this.props.history.location.state.domainToken,
-      bedrooms: this.props.history.location.state.bedrooms,
-      bathrooms: this.props.history.location.state.bathrooms,
-      max_price: this.props.history.location.state.max_price,
-      suburb: this.props.history.location.state.suburb
+      domainToken: this.props.domainToken,
+      bedrooms: this.props.bedrooms,
+      bathrooms: this.props.bathrooms,
+      max_price: this.props.max_price,
+      // max_price: maxPrice,
+      suburb: this.props.suburb
     })
   }
 
@@ -65,34 +75,37 @@ class SearchedShowListings extends Component {
   render() {
 
     return(
-
-      <div className="component">
-
-      <h1>Listings</h1>
-
-        <div>
-          {
-            this.state.propertyResults.length > 0
-            ?
-            this.state.propertyResults.map( p =>
+      <div className="listings-container">
+        {
+          this.state.propertyResults.length > 0
+          ?
+          this.state.propertyResults.map( p =>
+            <div key={p.listing.id} className="listings">
+              <div>
+                <Link to={`/listing/${p.listing.id}`}>
+                  <img className="listings-img" src={p.listing.media[0].url} ></img>
+                </Link>
+              </div>
               <Link to={`/listing/${p.listing.id}`}>
-                <div className='listings'>
-                  <div key={p.listing.id} className='listings-left'>
-                    {p.listing.propertyDetails.displayableAddress}
-                  </div><div className='listings-right'>
-                    <img src={p.listing.media[0].url} ></img>
-                    </div>
-                  <br></br>
+                <div className='listings-headline-address'>
+                  <p>{p.listing.propertyDetails.displayableAddress}</p>
+                </div>
+                <div className="home-icons">
+                  <img src={process.env.PUBLIC_URL + '/images/icon-bed.png'}></img>
+                  <span class="home-icons-numbers">{p.listing.propertyDetails.bedrooms}</span>
+                  <span class="home-icons-numbers"><img src={process.env.PUBLIC_URL + '/images/icon-bathtub.png'}></img>
+                  {p.listing.propertyDetails.bathrooms}</span>
+                <span class="home-icons-numbers cars"><img src={process.env.PUBLIC_URL + '/images/icon-car.png'}></img>
+                  {p.listing.propertyDetails.carspaces}</span>
                 </div>
               </Link>
-            )
-
-           :
-           <p>Loading...</p>
-          }
-        </div>
-
+            </div>
+          )
+         :
+         <p>Loading...</p>
+        }
       </div>
+
 
     )
   }

@@ -5,6 +5,10 @@ import axios from 'axios';
 import GoogleMapReact from 'google-map-react';
 import SearchSelectedArea from './SearchSelectedArea'
 import DisplayProperties from './DisplayProperties'
+import Slider, { Range } from 'rc-slider';
+import 'rc-slider/assets/index.css';
+
+const wrapperStyle = { width: "80vw", 'margin-top': "25px", 'margin-left': "10px", 'margin-bottom': "25px"};
 
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
@@ -139,10 +143,6 @@ function GDouglasPeucker (source, kink)
 
 }
 
-// const mapStyles = {
-//   width: '50%',
-//   height: '50%',
-// };
 
 export default class MapContainer extends Component {
 
@@ -173,8 +173,28 @@ export default class MapContainer extends Component {
     zoom: 15
   };
 
+  // handleChange refactored when not using imported component
   handleChange(e) {
      this.setState({ [e.target.name] : e.target.value });
+  }
+
+  // Slider Handlers
+  onSliderChangeBedrooms = (e) => {
+    // console.log(e);
+    this.setState({bedrooms: e})
+  }
+  onSliderChangeBathrooms = (e) => {
+    // console.log(e);
+    this.setState({bathrooms: e})
+  }
+  onSliderChangeMaxPrice = (e) => {
+    // console.log(e);
+
+    if (e === 0) {
+      this.setState({max_price: 100000000})
+    } else {
+      this.setState({max_price: e})
+    }
   }
 
   componentDidMount() {
@@ -190,6 +210,7 @@ export default class MapContainer extends Component {
      const railsDomainTokenRequest = axios.get("https://find-homes.herokuapp.com/domain_token").then(result => {
        console.log(`The result is: ${result}`);
        this.setState({domain_token: result.data})
+       localStorage.setItem('domainToken', result.data.data)
      })
      console.log(`railsDomainTokenRequest is: ${railsDomainTokenRequest}`);
      return railsDomainTokenRequest
@@ -245,9 +266,9 @@ export default class MapContainer extends Component {
 
         var polyOptions = {
             map: that.state.map,
-            fillColor: '#0099FF',
+            fillColor: '#458AD3',
             fillOpacity: 0.7,
-            strokeColor: '#AA2143',
+            strokeColor: '#FF3B00',
             strokeWeight: 2,
             clickable: false,
             zIndex: 1,
@@ -290,77 +311,54 @@ export default class MapContainer extends Component {
   }
 
   // Upon submitting suburb form route to SearchedShowListing Route and pass along these state. Can be found under: history > location > staten >
-  submitForm (e) {
+  searchBySuburb = (e) => {
     e.preventDefault()
 
     this.props.history.push({
-      pathname: '/searchlistings',
+      // pathname: '/searchlistings',
+      pathname: '/searchproperties',
       state: {
-        bedrooms: this.state.bedrooms,
-        bathrooms: this.state.bathrooms,
-        max_price: this.state.max_price,
-        suburb: this.state.suburb,
+        // bedrooms: this.state.bedrooms,
+        // bathrooms: this.state.bathrooms,
+        // max_price: this.state.max_price,
+        // suburb: this.state.suburb,
         domainToken: this.state.domain_token.data
       }
     })
-  } //submitForm()
+  } //searchBySuburb()
 
 
   render(){
 
 
     return (
-
-      <div style={{ height: '60vh', width: '80vw', margin: 'auto' }}>
-
-         <form onSubmit={this.submitForm.bind(this)} bedrooms={this.state.bedrooms}>
-           <label>
-
-             Search Suburb:
-             <input type="text" name="suburb" value={this.state.value} placeholder=" 'Glebe'" onChange={this.handleChange.bind(this)} />
-
-           </label>
-
-           <input type="submit" value="Search" />
-         </form>
-
-       <div>
-         <label>
-           Min Bedrooms:
-           <select value={this.state.bedrooms} name='bedrooms' onChange={this.handleChange.bind(this)}>
-             <option value='0'>0</option>
-             <option value='1'>1</option>
-             <option value="2">2</option>
-             <option value="3">3</option>
-             <option value="4">4</option>
-           </select>
-         </label>
-         <label>
-           Min Bathrooms:
-           <select value={this.state.bathrooms} name='bathrooms' onChange={this.handleChange.bind(this)}>
-             <option value='0'>0</option>
-             <option value='1'>1</option>
-             <option value="2">2</option>
-             <option value="3">3</option>
-             <option value="4">4</option>
-           </select>
-         </label>
-         <label>
-           Max Price:
-           <select value={this.state.max_price} name='max_price' onChange={this.handleChange.bind(this)}>
-             <option value="">-</option>
-             <option value="1000000">1,000,000</option>
-             <option value="2000000">2,000,000</option>
-             <option value="3000000">3,000,000</option>
-             <option value="5000000">5,000,000</option>
-           </select>
-         </label>
-
-       </div>
+      <div className="mapContainer">
+      <div style={{ height: '80vh', width: '84vw', margin: 'auto' }}>
 
 
 
-       <button onClick={this.freeDraw}>Draw area</button>
+        <div>
+          <div style={wrapperStyle} className="searchBedrooms">
+            <p>Min Bedrooms</p>
+            <Slider min={0} defaultValue={0} marks={{ 0: 0, 1: 1, 2: 2, 3: 3, 4: 4}} step={null} onChange={this.onSliderChangeBedrooms} max={4} />
+          </div>
+          <div style={wrapperStyle} className="searchBathrooms">
+            <p>Min Bathrooms</p>
+            <Slider min={0} defaultValue={0} marks={{ 0: 0, 1: 1, 2: 2, 3: 3, 4: 4}} step={null} onChange={this.onSliderChangeBathrooms} max={4} />
+          </div>
+          <div style={wrapperStyle} className="maxPrice">
+            <p>Max Price ($m)</p>
+            <Slider min={0} defaultValue={0} marks={{ 0: 'Any', 2000000: 2 , 4000000: 4 , 6000000: 6 , 8000000: 8 , 10000000: 10 }} step={null} onChange={this.onSliderChangeMaxPrice} max={10000000} />
+          </div>
+        </div>
+
+
+        <div className="map-container-button">
+
+          <button id="search-with-map" onClick={this.freeDraw}>SEARCH WITH MAP</button>
+          <button onClick={this.searchBySuburb}>SEARCH BY SUBURB</button>
+
+        </div>
 
 
 
@@ -379,20 +377,26 @@ export default class MapContainer extends Component {
         <AnyReactComponent
           lat={p.listing.propertyDetails.latitude}
           lng={p.listing.propertyDetails.longitude}
-          text= <Link to={`/listing/${p.listing.id}`}><strong>X</strong></Link>
+          text= <Link to={`/listing/${p.listing.id}`}><img src={process.env.PUBLIC_URL + '/images/gmaps-marker-3.png'}></img></Link>
         />
       )
     }
 
 
       </GoogleMapReact>
+      </div>
+      <br />
+      <div>
       {
         this.state.searchAreaPath.length > 0
         ?
+        <div className="homepage-house-display">
        <DisplayProperties polygonDrawn={this.state.searchAreaPath} domainToken={this.state.domain_token} selectedPropCallBack={this.selectedPropCallBack} bedrooms={this.state.bedrooms} bathrooms={this.state.bathrooms} maxPrice={this.state.max_price}/>
+       </div>
        :
-       <p>Select an area on the map to search</p>
+       <div id="select-area-on-map">Select SEARCH WITH MAP button and draw a circle on map</div>
       }
+     </div>
      </div>
    );
  }
@@ -412,6 +416,7 @@ export default class MapContainer extends Component {
     -
 3.
 
-Do something you're so good at
+
+
 
 */

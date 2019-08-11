@@ -8,6 +8,7 @@ import CreateAccount from './components/CreateAccount';
 import SearchedShowListings from './components/SearchedShowListings';
 import Nav from './components/Nav';
 import Footer from './components/Footer'
+import SearchProperties from './components/searchProperties'
 
 const Routes = (
   <Router>
@@ -19,6 +20,7 @@ const Routes = (
       <Route exact path="/wishlist" component={ WishList } />
       <Route exact path="/listing/:id" component={ ShowListing }/>
       <Route exact path="/searchlistings" component={ SearchedShowListings }/>
+      <Route exact path="/searchproperties" component={ SearchProperties }/>
       <Route path="/" component={ Footer } />
     </div>
   </Router>
