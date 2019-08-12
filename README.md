@@ -23,25 +23,28 @@
 * User authentication with JSON Web Tokens (JWT)   
 * Logged-in users can add and delete properties from their search to their wish lists
 * The show page for properties is always up-to-date with the Domain API - only a small subset of data about each saved property is stored in the database and a new axios request is made for the show page.
+* Design is (mostly) responsive!!
 
 
 **Backend Tech used**
 * Ruby v2.6.3
 * Ruby on Rails
 * Gems: pry-rails, knock, bcrypt, rails 12 factor, rack-cors, httparty
-* API: Domain API https://developer.domain.com.au
-* OAuth
-* JWT
+* API: Domain API https://developer.domain.com.au (OAuth)
+* JWT for authentication
+* Deployed to Heroku
+
 
 **Frontend Tech used**
 * JavaScript
 * React
 * NPM packages: axios, google-map-react, react-router-dom, gh-pages
 * API: Google Maps Api    
-* HTML
-* CSS
+* HTML/CSS
+* Deployed to GH pages
+
 
 **List of bugs**
 * Error may occur if you draw the search area too slowly on Google Maps
 * Search results will not be saved if you navigate backwards from the show page
-* Design is not responsive
+* Page refresh required for a new search

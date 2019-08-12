@@ -383,9 +383,15 @@ a {
   top: 12vh;
 }
 
-.searchproperties {
+.searchPropertiesContainer {
   position: relative;
   top: 12vh;
+  /* padding: 2%; */
+}
+
+.searchproperties {
+  /* position: relative;
+  top: 12vh; */
   padding: 2%;
   background-color: #EBEBEB;
 }
