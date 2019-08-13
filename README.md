@@ -1,7 +1,7 @@
 
 # Find Homes
 
-<img alt="map-search" src="images/map.png" width="400px">
+<img alt="map-search" src={process.env.PUBLIC_URL + '/images/map.png'} width="400px">
 
 
 
