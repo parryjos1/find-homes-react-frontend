@@ -474,3 +474,40 @@ div#select-area-on-map {
 .homepage-house-display {
   margin-top: 51vh;
 }
+
+.show-property {
+  position: relative;
+  top: 12vh;
+  padding: 2%;
+}
+
+.add {
+  border: 0.1em solid #FF3B00;
+  font-family: 'News Cycle', sans-serif;
+  color: #FF3B00;
+  background: none;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 100%;
+  font-weight: 800;
+  cursor: pointer;
+  width: 100%;
+}
+
+.add:hover {
+  background: #FF3B00;
+  color: #ECECEC;
+
+}
+
+.zoom {
+  transition: transform .2s;
+}
+
+.zoom:hover{
+  transform: scale(1.5);
+  border: 5px solid rgba(12, 44, 84, 0.9);
+  border-radius: 2px;
+  padding: 0;
+}

@@ -71,8 +71,8 @@ class ShowListing extends Component {
 
   render(){
     return(
-      <div className="component">
-        <button onClick={()=>this.addListing(this.state.listing.id, this.state.listing.addressParts.displayAddress, this.state.listingImages[0].url, this.state.listing.headline, this.state.listing.geoLocation.latitude, this.state.listing.geoLocation.longitude )}>Add This house</button>
+      <div className="show-property">
+        <button className="add" onClick={()=>this.addListing(this.state.listing.id, this.state.listing.addressParts.displayAddress, this.state.listingImages[0].url, this.state.listing.headline, this.state.listing.geoLocation.latitude, this.state.listing.geoLocation.longitude )}>ADD TO WISHLIST</button>
 
         <h2>{this.state.listing.headline}</h2>
         <h3>{this.state.address}</h3>
@@ -81,17 +81,23 @@ class ShowListing extends Component {
         <p><strong>Car spaces</strong>: {this.state.listing.carspaces}</p>
 
         <p><strong>Price</strong>: {this.state.price}</p>
+        <br/>
 
 
           {
             this.state.listingImages.length > 0
             ?
-            this.state.listingImages.map( (image, index) => (
-              <img className="show-images" key={index} src={image.url}/>
-            ))
+
+              this.state.listingImages.map( (image, index) => (
+                <img className="show-images zoom" key={index} src={image.url}/>
+              ))
+
             :
             <p>loading</p>
           }
+
+        <br/>
+        <br/>
         <p>{this.state.listing.description}</p>
 
 

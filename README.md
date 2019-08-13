@@ -48,3 +48,4 @@
 * Error may occur if you draw the search area too slowly on Google Maps
 * Search results will not be saved if you navigate backwards from the show page
 * Page refresh required for a new search
+* ADD TO WISHLIST button appears on frontend even the property is already on your wishlist BUT backend logic prevents addition of properties which are already added
