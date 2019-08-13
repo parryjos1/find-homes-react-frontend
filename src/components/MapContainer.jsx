@@ -19,7 +19,8 @@ require('dotenv').config();
 
 // const API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY2;
 // Google API Key is scoped to only this site
-const API_KEY = 'AIzaSyApveGzuUmoZ9NVuRnQMKCWvI_GXOqlzW4';
+// const API_KEY = 'AIzaSyApveGzuUmoZ9NVuRnQMKCWvI_GXOqlzW4';
+const API_KEY2 = 'AIzaSyApveGzuUmoZ9NVuRnQMKCWvI_GXOqlzW4';
 // console.log('API KEY', API_KEY, process.env);
 
 /* Stack-based Douglas Peucker line simplification routine
@@ -365,7 +366,7 @@ export default class MapContainer extends Component {
 
 
         <GoogleMapReact
-          bootstrapURLKeys={{ key: API_KEY }}
+          bootstrapURLKeys={{ key: API_KEY2 }}
           defaultCenter={this.props.center}
           defaultZoom={this.props.zoom}
            onGoogleApiLoaded={this.handleApiLoaded}
