@@ -1,6 +1,10 @@
 
 # Find Homes
 
+<img alt="map-search" src="images/map.png" width="400px">
+
+
+
 **Team Members:**
 * Josh Parry https://github.com/parryjos1
 * Amanda Chau https://github.com/amandachau3
@@ -30,7 +34,7 @@
 * Ruby v2.6.3
 * Ruby on Rails
 * Gems: pry-rails, knock, bcrypt, rails 12 factor, rack-cors, httparty
-* API: Domain API https://developer.domain.com.au (OAuth)
+* Domain API https://developer.domain.com.au (OAuth)
 * JWT for authentication
 * Deployed to Heroku
 
@@ -39,7 +43,7 @@
 * JavaScript
 * React
 * NPM packages: axios, google-map-react, react-router-dom, gh-pages
-* API: Google Maps Api    
+* Google Maps Api    
 * HTML/CSS
 * Deployed to GH pages
 
@@ -48,4 +52,4 @@
 * Error may occur if you draw the search area too slowly on Google Maps
 * Search results will not be saved if you navigate backwards from the show page
 * Page refresh required for a new search
-* ADD TO WISHLIST button appears on frontend even the property is already on your wishlist BUT backend logic prevents addition of properties which are already added
+* ADD TO WISHLIST button appears even when the property is already on your wishlist
