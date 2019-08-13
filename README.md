@@ -1,10 +1,6 @@
 
 # Find Homes
 
-<img alt="map-search" src={process.env.PUBLIC_URL + '/images/map.png'} width="400px">
-
-
-
 **Team Members:**
 * Josh Parry https://github.com/parryjos1
 * Amanda Chau https://github.com/amandachau3
