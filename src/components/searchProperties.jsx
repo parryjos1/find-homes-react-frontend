@@ -4,7 +4,7 @@ import axios from 'axios';
 import Slider, { Range } from 'rc-slider';
 import SearchedShowListings from './SearchedShowListings';
 
-// slider built using --> https://www.npmjs.com/package/rc-slider 
+// slider built using --> https://www.npmjs.com/package/rc-slider
 import 'rc-slider/assets/index.css';
 // const wrapperStyle = { width: 400, margin: 50 };
 const wrapperStyle = { width: "80vw", margin: "25px"};
@@ -55,6 +55,7 @@ class SearchProperties extends Component {
 
   render(){
     return(
+      <div className="searchPropertiesContainer">
       <div className="searchproperties">
 
 
@@ -79,6 +80,7 @@ class SearchProperties extends Component {
         <form onSubmit={this.handleSubmit}>
           <input type="submit" id="submit-searchproperties" />
         </form>
+        </div>
 
 
         <div>
@@ -96,6 +98,7 @@ class SearchProperties extends Component {
        <div id="search-properties-spacer"></div>
         }
        </div>
+
 
 
 
