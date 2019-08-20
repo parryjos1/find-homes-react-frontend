@@ -58,8 +58,32 @@ class DisplayProperties extends Component {
     }).then(result => {
         const { data } = result;
         console.log('hello array:', data);
-        this.setState({propertyResults: data})
-        this.props.selectedPropCallBack(data)
+
+        //Create a new array that contains both data.listing(single listing) and data.listings(an array)
+        //this new array can be mapped over without throwing an error
+
+        const dataTransformed = [];
+
+        for (let i = 0; i < data.length; i++) {
+         if (data[i].listing) {
+           dataTransformed.push(data[i].listing)
+         } else {
+           const listingsArray = data[i].listings;
+           dataTransformed.push(...listingsArray);
+         }
+        }
+
+
+
+
+        console.log('hello transformed array:', dataTransformed)
+
+        // this.setState({propertyResults: data})
+
+        this.setState({propertyResults: dataTransformed});
+
+        // this.props.selectedPropCallBack(data)
+        this.props.selectedPropCallBack(dataTransformed);
     }).catch(err => console.error(err.response.data))
   } // end of searchListing
 
@@ -73,27 +97,30 @@ class DisplayProperties extends Component {
         {
           this.state.propertyResults.length > 0
           ?
+
           this.state.propertyResults.map( p =>
-            <div key={p.listing.id} className="listings">
+
+            <div key={p.id} className="listings">
               <div>
-                <Link to={`/listing/${p.listing.id}`}>
-                  <img className="listings-img" src={p.listing.media[0].url} ></img>
+                <Link to={`/listing/${p.id}`}>
+                  <img className="listings-img" src={p.media[0].url} ></img>
                 </Link>
               </div>
-              <Link to={`/listing/${p.listing.id}`}>
+              <Link to={`/listing/${p.id}`}>
                 <div className='listings-headline-address'>
-                  <p>{p.listing.propertyDetails.displayableAddress}</p>
+                  <p>{p.propertyDetails.displayableAddress}</p>
                 </div>
                 <div className="home-icons">
                   <img src={process.env.PUBLIC_URL + '/images/icon-bed.png'}></img>
-                  <span class="home-icons-numbers">{p.listing.propertyDetails.bedrooms}</span>
+                  <span class="home-icons-numbers">{p.propertyDetails.bedrooms}</span>
                   <span class="home-icons-numbers"><img src={process.env.PUBLIC_URL + '/images/icon-bathtub.png'}></img>
-                  {p.listing.propertyDetails.bathrooms}</span>
+                  {p.propertyDetails.bathrooms}</span>
                 <span class="home-icons-numbers cars"><img src={process.env.PUBLIC_URL + '/images/icon-car.png'}></img>
-                  {p.listing.propertyDetails.carspaces}</span>
+                  {p.propertyDetails.carspaces}</span>
                 </div>
               </Link>
             </div>
+
 
           )
 

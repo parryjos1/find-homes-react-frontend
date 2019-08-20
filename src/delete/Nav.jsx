@@ -18,7 +18,7 @@ class Nav extends Component {
               <div>
               <img src={process.env.PUBLIC_URL + '/images/house-128.png'} height="40vh"></img>
               </div><div>
-              <Link to="/">FIND HOMES</Link>
+              <Link to="/">FIND</Link>
               </div>
             </div><div className="nav-right">
             {localStorage.getItem('userToken')

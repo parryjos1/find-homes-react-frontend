@@ -377,11 +377,14 @@ export default class MapContainer extends Component {
         this.state.selectedPropertyLocations.length > 0
         &&
          this.state.selectedPropertyLocations.map(p =>
+
         <AnyReactComponent
-          lat={p.listing.propertyDetails.latitude}
-          lng={p.listing.propertyDetails.longitude}
-          text= <Link to={`/listing/${p.listing.id}`}><img src={process.env.PUBLIC_URL + '/images/gmaps-marker-3.png'}></img></Link>
+          lat={p.propertyDetails.latitude}
+          lng={p.propertyDetails.longitude}
+          text= <Link to={`/listing/${p.id}`}><img src={process.env.PUBLIC_URL + '/images/gmaps-marker-3.png'}></img></Link>
         />
+      
+
       )
     }
 
