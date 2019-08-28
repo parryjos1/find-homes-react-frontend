@@ -38,9 +38,6 @@ class DisplayProperties extends Component {
   return axios.post(`https://api.domain.com.au/v1/listings/residential/_search`,
   {
       "listingType": "Sale",
-      "minBedrooms": this.props.bedrooms,
-      "minBathrooms": this.props.bathrooms,
-      "maxPrice": this.props.maxPrice,
       "geoWindow": {
 
         "polygon": {
@@ -69,11 +66,13 @@ class DisplayProperties extends Component {
 
     return(
 
-      <div className="component">
+      <div>
         {
           this.state.propertyResults.length > 0
           ?
-          this.state.propertyResults.map( p =>
+          {this.state.propertyResults.map( p =>
+            p.listing
+            ?
             <Link to={`/listing/${p.listing.id}`}>
               <div className='listings'>
                 <div key={p.listing.id} className='listings-left'>
@@ -84,7 +83,11 @@ class DisplayProperties extends Component {
                 <br></br>
               </div>
             </Link>
-          )
+            :
+            <div>
+            listings here
+            </div>
+          )}
 
          :
          <p>propertyResults is still empty</p>
