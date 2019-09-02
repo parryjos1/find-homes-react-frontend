@@ -251,7 +251,7 @@ export default class MapContainer extends Component {
 
         //?*?
         // Gets the path of the mouse movements but why is that on the mouse up?
-        var theArrayofLatLng = path.j; // What is path.j? ?*?
+        var theArrayofLatLng = path.g; // What is path.j? ?*?
         var arrayforPolygontoUse= GDouglasPeucker(theArrayofLatLng,50);
         console.log("ArrayforPolygontoUse", arrayforPolygontoUse);
 
@@ -383,7 +383,7 @@ export default class MapContainer extends Component {
           lng={p.propertyDetails.longitude}
           text= <Link to={`/listing/${p.id}`}><img src={process.env.PUBLIC_URL + '/images/gmaps-marker-3.png'}></img></Link>
         />
-      
+
 
       )
     }
